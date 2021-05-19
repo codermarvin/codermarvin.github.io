@@ -90,7 +90,7 @@ a:visited {
 
 a:hover,
 a:focus {
-  color: #f39c12;
+  color: #FFC600;
 }
 
 
@@ -339,7 +339,7 @@ ul.disc li::before {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #f39c12;
+  background: #FFC600;
   position: absolute;
   left: -17px;
   top: 11px;
@@ -348,7 +348,7 @@ ul.disc li::before {
 
 dt {
   margin: 0;
-  color: #f39c12;
+  color: #;
 }
 
 dd {
@@ -519,7 +519,7 @@ td:last-child {
   right: 100%;
   height: 100%;
   width: 100%;
-  background: #f39c12;
+  background: #FFC600;
 }
 
 .pace.pace-inactive {
@@ -780,8 +780,8 @@ button.button-primary,
 input[type="submit"].button-primary,
 input[type="reset"].button-primary,
 input[type="button"].button-primary {
-  background-color: #f39c12;
-  border-color: #f39c12;
+  background-color: #FFC600;
+  border-color: #FFC600;
   color: #FFFFFF;
 }
 
@@ -825,8 +825,8 @@ button.stroke,
 
 button.stroke:hover,
 .button.stroke:hover {
-  border: 0.3rem solid #f39c12;
-  color: #f39c12;
+  border: 0.3rem solid #FFC600;
+  color: #FFC600;
 }
 
 button.pill,
@@ -1052,7 +1052,7 @@ input::-moz-focus-inner {
 }
 
 .stats-tabs li a:hover {
-  color: #f39c12;
+  color: #FFC600;
 }
 
 .stats-tabs li a em {
@@ -1084,7 +1084,7 @@ h1.intro-header::before {
   content: "";
   height: 2px;
   width: 70px;
-  background-color: #f39c12;
+  background-color: #FFC600;
   position: absolute;
   left: 0;
   bottom: 0;
@@ -1554,7 +1554,7 @@ h1.intro-header::before {
 .home-social-list li a:hover,
 .home-social-list li a:focus,
 .home-social-list li a:active {
-  color: #44c455;
+  color: #FFC600;
 }
 
 
@@ -1579,7 +1579,7 @@ h1.intro-header::before {
 
 .home-scrolldown a:hover,
 .home-scrolldown a:focus {
-  color: #44c455 !important;
+  color: #FFC600 !important;
 }
 
 html[data-useragent*='MSIE 10.0'] .home-scrolldown,
@@ -1855,7 +1855,7 @@ html[data-useragent*='MSIE 10.0'] .home-scrolldown,
 .about-features .feature .icon {
   margin-bottom: 1.5rem;
   display: inline-block;
-  color: #f39c12;
+  color: #FFC600;
 }
 
 .about-features .feature .icon i {
@@ -1941,7 +1941,7 @@ html[data-useragent*='MSIE 10.0'] .home-scrolldown,
   line-height: 54px;
   text-align: center;
   border-radius: 50%;
-  background-color: #f39c12;
+  background-color: #FFC600;
   box-shadow: 0 0 0 15px #ffffff;
   z-index: 500;
   position: absolute;
@@ -2150,12 +2150,12 @@ html[data-useragent*='MSIE 10.0'] .home-scrolldown,
 }
 
 .pricing-table .plan-block .plan-block-features li span {
-  color: #f39c12;
+  color: #FFC600;
   font-family: "muli-bold", sans-serif;
 }
 
 .pricing-table .plan-block.primary {
-  background: #f39c12;
+  background: #FFC600;
   color: rgba(255, 255, 255, 0.8);
 }
 
@@ -2184,7 +2184,7 @@ html[data-useragent*='MSIE 10.0'] .home-scrolldown,
 
 .pricing-table .plan-block.primary .button.button-primary:hover,
 .pricing-table .plan-block.primary .button.button-primary:focus {
-  color: #f39c12;
+  color: #FFC600;
 }
 
 .pricing-table .plan-bottom-part {
@@ -2422,7 +2422,7 @@ html[data-useragent*='MSIE 10.0'] .home-scrolldown,
 
 #testimonial-slider .owl-dots .owl-dot.active span,
 #testimonial-slider .owl-dots .owl-dot:hover span {
-  background-color: #f39c12;
+  background-color: #FFC600;
 }
 
 
@@ -2478,7 +2478,7 @@ html[data-useragent*='MSIE 10.0'] .home-scrolldown,
  * ------------------------------------------------------------------- */
 
 #download {
-  background: #f39c12;
+  background: #FFC600;
   color: #ffffff;
   padding-top: 12rem;
   padding-bottom: 12rem;
@@ -2569,7 +2569,7 @@ footer {
 
 footer a,
 footer a:visited {
-  color: #f39c12;
+  color: #FFC600;
 }
 
 footer a:hover,
@@ -2675,8 +2675,8 @@ footer ul a:visited {
   top: 0;
   right: 0;
   color: #ffffff;
-  background: #f39c12;
-  border-color: #f39c12;
+  background: #FFC600;
+  border-color: #FFC600;
   border-radius: 0 .5rem .5rem 0;
   padding: 0 15px;
 }
