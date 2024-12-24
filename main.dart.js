@@ -74769,14 +74769,14 @@ gn_(){var s=this
 return[s.a,s.b,s.c,s.d,s.e,s.f,s.r]}}
 A.HP.prototype={
 J(a){var s=null
-return new A.xe(B.HF,"Doctor Search",A.rO(s,A.aoW(B.a0,s,s,B.Hr),!0),s)}}
+return new A.xe(B.HF,"HLC - MMN - Doctor Search",A.rO(s,A.aoW(B.a0,s,s,B.Hr),!0),s)}}
 A.xr.prototype={
 ad(){return new A.OC(new A.KF(B.xt,$.ak()))}}
 A.OC.prototype={
 t6(a,b){var s=null,r=A.b([A.cP(b,s,s,s,s,s,s,s,B.bS,s,s,s)],t.E)
 B.b.O(r,new A.a7(A.b(a.split("/"),t.s),new A.afS(),t.bg))
 return A.n0(r,B.aY,B.ax,B.aU)},
-J(a){var s=null,r=A.cP("Metro Manila - North",s,s,s,s,s,s,s,B.jO.bI(B.j),s,s,s)
+J(a){var s=null,r=A.cP("HLC - Metro Manila-North",s,s,s,s,s,s,s,B.jO.bI(B.j),s,s,s)
 r=new A.yw(new A.uJ(r,B.cN,!1,new A.Px(s,s,1/0,56),s),new A.uU(new A.afQ(this),s,s,s,t.al),B.j,s)
 return new A.uW(r,new A.afR(),r,s,t.zl)}}
 A.afS.prototype={
@@ -74832,13 +74832,13 @@ s=b.b
 if(s.length!==0)n.push(B.ic)
 n.push(A.aB1(new A.afO(p,b),s.length,B.HK,new A.afP(),!0))
 if(s.length!==0)n.push(B.ic)
-if(o){if(q<20)s=8
-else if(q<30)s=4
-else s=q<40?3:1
+if(o){if(q<20)s=12
+else if(q<30)s=7
+else s=q<40?4:1
 s=A.b([A.ng(A.cP("Results: "+q,i,i,i,i,i,i,i,B.bS,i,i,i),s)],l)
 if(q>10){r=B.d.ka(q/10)
-s.push(A.ng(A.aqV(A.aqW(B.aZ,B.cb,new A.cB(B.Z,new A.aU(A.U(64,84,84,84),1,B.u,-1)),B.aZ,35),b.r,r,new A.afH(p,a),!1,!1),2))}n.push(A.en(i,A.rf(s,B.aS,B.ax,B.aU),B.w,i,i,i,40,i,B.lr,i))}n.push(B.bP)
-n.push(A.en(i,A.n0(A.b([B.LU,A.cP("Hospital Liaison Committee of Jehovah's Witnesses",i,i,i,i,i,i,i,B.bR.bI(B.j),i,i,i),A.cP("Metro Manila - North",i,i,i,i,i,i,i,B.bR.bI(B.j),i,i,i),B.LV],l),B.aY,B.ax,B.aU),B.w,B.cb,i,i,i,i,B.CL,i))
+s.push(A.ng(A.aqV(A.aqW(B.aZ,B.cb,new A.cB(B.Z,new A.aU(A.U(64,84,84,84),1,B.u,-1)),B.aZ,35),b.r,r,new A.afH(p,a),!1,!1),3))}n.push(A.en(i,A.rf(s,B.aS,B.ax,B.aU),B.w,i,i,i,40,i,B.lr,i))}n.push(B.bP)
+n.push(A.en(i,A.n0(A.b([B.LU,A.cP("Hospital Liaison Committee of Jehovah's Witnesses",i,i,i,i,i,i,i,B.bR.bI(B.j),i,i,i),A.cP("Metro Manila-North",i,i,i,i,i,i,i,B.bR.bI(B.j),i,i,i),B.LV],l),B.aY,B.ax,B.aU),B.w,B.cb,i,i,i,i,B.CL,i))
 return A.aqx(n,i,i,!1)},
 $S:469}
 A.afE.prototype={
