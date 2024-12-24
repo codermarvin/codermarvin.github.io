@@ -74813,9 +74813,9 @@ l=t.E
 r=A.lT(B.c6,A.b([A.em(i,A.n0(A.b([B.QY,B.xe,B.R1,q,B.bP,B.R0,o,B.bP,B.R_,m,B.bP,B.R2,B.LW,new A.zC(p.w,B.Du,B.MK,B.LZ,B.M_,new A.afK(p),!0,i),B.xe,A.KD(new A.d5(B.lq,A.cP("Search",i,i,i,i,i,i,i,B.bR.bI(B.j),i,i,i),i),new A.afL(p,a),n)],l),B.aY,B.aq,B.aU),B.w,i,i,new A.cS(i,i,r,i,i,i,B.ak),i,B.ls,B.lt,i),A.ID(i,A.em(i,B.QZ,B.w,B.j,i,i,i,i,B.CI,i),i,i,20,i,-8,i)],l),B.a5,B.bQ,i)
 q=b.f
 o=q>0
-if(o){if(q<20)n=10
-else if(q<30)n=6
-else n=q<40?4:1
+if(o){if(q<20)n=8
+else if(q<30)n=5
+else n=q<40?3:1
 n=A.b([A.ng(A.cP("Results: "+q,i,i,i,i,i,i,i,B.bS,i,i,i),n)],l)
 if(q>10){m=B.d.ka(q/10)
 n.push(A.ng(A.aqU(A.aqV(B.aZ,B.cb,new A.cB(B.Z,new A.aU(A.U(64,84,84,84),1,B.u,-1)),B.aZ,35),b.r,m,new A.afM(p,a),!1,!1),2))}n=A.rf(n,B.aS,B.aq,B.aU)}else n=A.cP("The search returned no results.",i,i,i,i,i,i,i,B.bS.ack(B.Da),i,i,i)
@@ -74824,9 +74824,9 @@ s=b.b
 if(s.length!==0)n.push(B.ic)
 n.push(A.aB0(new A.afN(p,b),s.length,B.HK,new A.afO(),!0))
 if(s.length!==0)n.push(B.ic)
-if(o){if(q<20)s=10
-else if(q<30)s=6
-else s=q<40?4:1
+if(o){if(q<20)s=8
+else if(q<30)s=5
+else s=q<40?3:1
 s=A.b([A.ng(A.cP("Results: "+q,i,i,i,i,i,i,i,B.bS,i,i,i),s)],l)
 if(q>10){r=B.d.ka(q/10)
 s.push(A.ng(A.aqU(A.aqV(B.aZ,B.cb,new A.cB(B.Z,new A.aU(A.U(64,84,84,84),1,B.u,-1)),B.aZ,35),b.r,r,new A.afG(p,a),!1,!1),2))}n.push(A.em(i,A.rf(s,B.aS,B.aq,B.aU),B.w,i,i,i,40,i,B.lr,i))}n.push(B.bP)
@@ -74901,12 +74901,12 @@ q=e.length!==0
 if(q)r.push(s.t6(e,"Personal Number"))
 if(q)r.push(B.bP)
 s=A.KE(p,p,B.cN,p,p,p,p,p,p,p,p,p,p,p,B.dd,p,p,p,p)
-r.push(A.hM(A.KD(new A.d5(B.lq,A.rf(A.b([B.Dr,B.LT,A.cP("Share",p,p,p,p,p,p,p,B.bR.bI(B.j),p,p,p)],m),B.aS,B.aq,B.aU),p),new A.afy(o,l,i,h,g,f,e),s),p,110))
+r.push(A.hM(A.KD(new A.d5(B.lq,A.rf(A.b([B.Dr,B.LT,A.cP("Share",p,p,p,p,p,p,p,B.bR.bI(B.j),p,p,p)],m),B.aS,B.aq,B.aU),p),new A.afy(o,l,i,h,g,f,e),s),p,120))
 return A.n0(A.b([new A.d5(B.ls,A.rf(A.b([j,B.LS,A.ng(A.arJ(A.n0(r,B.aY,B.aq,B.aU)),2)],m),B.aY,B.aq,B.aU),p)],m),B.aS,B.aq,B.aU)},
 $S:471}
 A.afy.prototype={
 $0(){var s=this
-A.ams("Name: "+s.b+"\nSpecialty: "+s.a.a+"\nHospital: "+s.c+"\nLocation: "+s.d+"\nClinic Hours: "+s.e+"\nClinic Number: "+s.f+"\nPersonal Number: "+s.r)},
+A.ams("Doctor: "+s.b+"\nSpecialty: "+s.a.a+"\nHospital: "+s.c+"\nLocation: "+s.d+"\nClinic Hours: "+s.e+"\nClinic Number: "+s.f+"\nPersonal Number: "+s.r)},
 $S:0}
 A.afO.prototype={
 $2(a,b){return B.ic},
