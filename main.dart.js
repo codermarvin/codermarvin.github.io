@@ -74821,12 +74821,12 @@ l=t.E
 r=A.lT(B.c6,A.b([A.en(i,A.n0(A.b([B.QY,B.xf,B.R1,q,B.bP,B.R0,o,B.bP,B.R_,m,B.bP,B.R2,B.LW,new A.zC(p.w,B.Dv,B.MK,B.LZ,B.M_,new A.afL(p),!0,i),B.xf,A.KD(new A.d5(B.lq,A.cP("Search",i,i,i,i,i,i,i,B.bR.bI(B.j),i,i,i),i),new A.afM(p,a),n)],l),B.aY,B.ax,B.aU),B.w,i,i,new A.cS(i,i,r,i,i,i,B.ak),i,B.ls,B.lt,i),A.ID(i,A.en(i,B.QZ,B.w,B.j,i,i,i,i,B.CJ,i),i,i,20,i,-8,i)],l),B.a5,B.bQ,i)
 q=b.f
 o=q>0
-if(o){if(q<20)n=8
-else if(q<30)n=4
-else n=q<40?3:1
+if(o){if(q<20)n=13
+else if(q<30)n=7
+else n=q<40?5:1
 n=A.b([A.ng(A.cP("Results: "+q,i,i,i,i,i,i,i,B.bS,i,i,i),n)],l)
 if(q>10){m=B.d.ka(q/10)
-n.push(A.ng(A.aqV(A.aqW(B.aZ,B.cb,new A.cB(B.Z,new A.aU(A.U(64,84,84,84),1,B.u,-1)),B.aZ,35),b.r,m,new A.afN(p,a),!1,!1),2))}n=A.rf(n,B.aS,B.ax,B.aU)}else n=A.cP("The search returned no results.",i,i,i,i,i,i,i,B.bS.ack(B.Db),i,i,i)
+n.push(A.ng(A.aqV(A.aqW(B.aZ,B.cb,new A.cB(B.Z,new A.aU(A.U(64,84,84,84),1,B.u,-1)),B.aZ,35),b.r,m,new A.afN(p,a),!1,!1),3))}n=A.rf(n,B.aS,B.ax,B.aU)}else n=A.cP("The search returned no results.",i,i,i,i,i,i,i,B.bS.ack(B.Db),i,i,i)
 n=A.b([new A.d5(B.lt,s,i),r,A.en(i,n,B.w,i,i,i,40,i,B.lr,i)],l)
 s=b.b
 if(s.length!==0)n.push(B.ic)
