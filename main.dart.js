@@ -74833,7 +74833,7 @@ if(s.length!==0)n.push(B.ic)
 n.push(A.aB1(new A.afO(p,b),s.length,B.HK,new A.afP(),!0))
 if(s.length!==0)n.push(B.ic)
 if(o){if(q<20)s=8
-else if(q<30)s=5
+else if(q<30)s=4
 else s=q<40?3:1
 s=A.b([A.ng(A.cP("Results: "+q,i,i,i,i,i,i,i,B.bS,i,i,i),s)],l)
 if(q>10){r=B.d.ka(q/10)
