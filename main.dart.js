@@ -22099,7 +22099,7 @@ var $async$ajL=A.R(function(b,c){if(b===1){o=c
 s=p}while(true)switch(s){case 0:k={}
 j=t.z
 k.a=A.z(j,j)
-n=A.ev("https://script.google.com/macros/s/AKfycbwyEtexKyWEPzlVUkbnewhYv0YYNLOzyhTflLlxLq4VoLQMOtEbJKMFgKMQ_-BeNWUc/exec",0,null)
+n=A.ev("https://script.google.com/macros/s/AKfycbxuMrlkpvSjlfRZKLCZIqxYmM_ocEKKKKsxUJiOD-WSWte--0LOMCtbPHmUNO7N9PIc/exec",0,null)
 p=4
 s=7
 return A.S(A.aHd(n,a).bH(new A.ajN(k),t.P),$async$ajL)
@@ -22120,12 +22120,12 @@ break
 case 1:return A.O(q,r)
 case 2:return A.N(o,r)}})
 return A.P($async$ajL,r)},
-ajd(a){var s=0,r=A.Q(t.f),q,p
-var $async$ajd=A.R(function(b,c){if(b===1)return A.N(c,r)
+ajd(a,b){var s=0,r=A.Q(t.f),q,p
+var $async$ajd=A.R(function(c,d){if(c===1)return A.N(d,r)
 while(true)switch(s){case 0:p=t.z
 s=3
-return A.S(A.ajL(A.av(["sheetID","13rdKAlt2BTnDC04qgfoeFSYxBshuIJzTafzuuR6sohA","action",a],p,p)),$async$ajd)
-case 3:q=c
+return A.S(A.ajL(A.av(["sheetID","13rdKAlt2BTnDC04qgfoeFSYxBshuIJzTafzuuR6sohA","sheetName",b,"action",a],p,p)),$async$ajd)
+case 3:q=d
 s=1
 break
 case 1:return A.O(q,r)}})
@@ -72942,7 +72942,7 @@ var $async$uA=A.R(function(c,d){if(c===1)return A.N(d,r)
 while(true)switch(s){case 0:j=q.c.aaZ([],0,[],0)
 if(!b.d)b.a.$1(j)
 s=2
-return A.S(A.ajd("read"),$async$uA)
+return A.S(A.ajd("read","HLC List"),$async$uA)
 case 2:p=d.h(0,"data")
 j=J.ci(p)
 j.en(p,new A.Wn())
