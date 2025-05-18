@@ -1,0 +1,10 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.marvinaquino.numberlink",
+      "sha256_cert_fingerprints": ["38:80:4D:01:9B:CB:32:96:8A:71:D0:2B:67:CB:B7:8E:F3:37:48:EA:21:0A:18:39:C5:BE:50:61:A0:31:11:92"]
+    }
+  }
+]
