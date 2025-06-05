@@ -1,96 +1,250 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Support - Numberoodle</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: Arial, sans-serif;
-      margin: 0; padding: 0;
-      background: #f9f9f9;
-      color: #333;
+      margin: 0;
+      font-family: 'Rubik', sans-serif;
+      background: #ffffff;
+      color: #111;
     }
+
     header {
-      background: #4a90e2;
-      color: white;
-      padding: 1rem;
       text-align: center;
+      padding: 2rem 1rem 1rem;
     }
-    main {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 1rem;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
-    }
+
     h1 {
+      font-size: 2.2rem;
       margin-bottom: 0.5rem;
     }
-    section {
-      margin-top: 2rem;
+
+    p {
+      max-width: 600px;
+      margin: 0 auto;
+      color: #444;
     }
-    form input, form textarea {
+
+    main {
+      max-width: 700px;
+      margin: 2rem auto;
+      padding: 0;
+    }
+
+    .faq-section,
+    .form-section {
+      padding: 0 1rem;
+    }
+
+    .faq-section h2 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+
+    details.faq-item {
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      background-color: #f9f9f9;
+      margin-bottom: 0.75rem;
+      overflow: hidden;
+      transition: box-shadow 0.3s ease;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 1.05rem;
+      padding: 1rem;
+      list-style: none;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-item[open] {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .faq-content {
+      max-height: 0;
+      overflow: hidden;
+      padding: 0 1rem;
+      color: #333;
+      font-size: 1rem;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+    }
+
+    .faq-item[open] .faq-content {
+      max-height: 250px;
+      padding: 0.5rem 1rem 1rem;
+    }
+
+    .faq-content p {
+      margin: 0;
+    }
+
+    /* Form Section */
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-top: 1.2rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    input,
+    textarea {
       width: 100%;
-      padding: 0.75rem;
-      margin: 0.5rem 0;
+      background: #f5f5f5;
       border: 1px solid #ccc;
-      border-radius: 4px;
+      border-radius: 12px;
+      padding: 0.75rem;
+      font-size: 1rem;
+      margin-top: 0.3rem;
+      box-sizing: border-box;
     }
-    form button {
-      padding: 0.75rem 1.5rem;
-      background: #4a90e2;
+
+    textarea {
+      resize: vertical;
+    }
+
+    button {
+      margin-top: 1.5rem;
+      background: #4aa1ff;
       color: white;
       border: none;
-      border-radius: 4px;
+      padding: 0.9rem 2rem;
+      font-size: 1rem;
+      border-radius: 999px;
       cursor: pointer;
-    }
-    footer {
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.875rem;
-      color: #999;
+      align-self: flex-start;
     }
   </style>
 </head>
-<body>
-  <header>
-    <h1>Support Center</h1>
-    <p>Need help with Numberoodle? We're here for you.</p>
-  </header>
-  <main>
-    <section>
-  <h2>Frequently Asked Questions</h2>
-  <ul>
-    <!-- <li><strong>How do I reset my progress?</strong><br> Go to settings and tap "Reset Progress".</li> -->
-    <!-- <li><strong>Why is my level not saving?</strong><br> Make sure you're logged in and connected to the internet.</li> -->
-    <li><strong>Can I play offline?</strong><br> Yes! Previously played levels are available offline.</li>
-    <li><strong>How do I earn coins or gems?</strong><br> Complete missions, beat your best times, or watch optional ads.</li>
-    <li><strong>What are missions?</strong><br> Missions are challenges like "Reach level 20" or "Beat your best time 3x" that reward you with gems.</li>
-    <li><strong>I’m stuck on a level. What can I do?</strong><br> You can use a hint, restart the level, or try later with a fresh mind!</li>
-    <li><strong>What do the stars mean?</strong><br> Stars reflect your performance on each level. More stars = better speed and efficiency.</li>
-    <li><strong>How do I challenge a friend?</strong><br> Use the “Share Challenge” button to send a unique level link to your friend.</li>
-    <li><strong>Will new puzzles be added?</strong><br> Yes! The game uses AI to generate new levels daily, especially in Hard mode.</li>
-    <!-- <li><strong>How can I remove ads?</strong><br> Purchase the ad-free upgrade from the in-app store to remove all banner and rewarded ads.</li> -->
-    <!-- <li><strong>Is my data synced across devices?</strong><br> Yes, if you're logged in with the same account, your progress will sync automatically.</li> -->
-    <li><strong>Who can I contact for help?</strong><br> Use the contact form below or email us at <a href="mailto:numberoodlehelp@yahoo.com">numberoodlehelp@yahoo.com</a>.</li>
-  </ul>
-</section>
 
-    <section>
-      <h2>Contact Support</h2>
-      <p>Still need help? Send us a message:</p>
+<body>
+
+  <header>
+    <h1>SUPPORT</h1>
+    <p>If you're experiencing issues with Numberoodle, fill out the form below and we’ll get back to you as soon as
+      possible.</p>
+  </header>
+
+  <main>
+    <section class="faq-section">
+      <h2>Frequently Asked Questions</h2>
+
+      <!-- <details class="faq-item">
+        <summary>How do I reset my progress?</summary>
+        <div class="faq-content">
+          <p>Go to settings and tap "Reset Progress".</p>
+        </div>
+      </details> -->
+
+      <!-- <details class="faq-item">
+        <summary>Why is my level not saving?</summary>
+        <div class="faq-content">
+          <p>Make sure you're logged in and connected to the internet.</p>
+        </div>
+      </details> -->
+
+      <details class="faq-item">
+        <summary>Can I play offline?</summary>
+        <div class="faq-content">
+          <p>Yes! Previously played levels are available offline.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>How do I earn coins or gems?</summary>
+        <div class="faq-content">
+          <p>Complete missions, beat your best times, or watch optional ads.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>What are missions?</summary>
+        <div class="faq-content">
+          <p>Missions are challenges like "Reach level 20" or "Beat your best time 3x" that reward you with gems.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>I’m stuck on a level. What can I do?</summary>
+        <div class="faq-content">
+          <p>You can use a hint, restart the level, or try later with a fresh mind!</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>What do the stars mean?</summary>
+        <div class="faq-content">
+          <p>Stars reflect your performance on each level. More stars = better speed and efficiency.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>How do I challenge a friend?</summary>
+        <div class="faq-content">
+          <p>Use the “Share Challenge” button to send a unique level link to your friend.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Will new puzzles be added?</summary>
+        <div class="faq-content">
+          <p>Yes! The game uses AI to generate new levels daily, especially in Hard mode.</p>
+        </div>
+      </details>
+
+      <!-- <details class="faq-item">
+        <summary>How can I remove ads?</summary>
+        <div class="faq-content">
+          <p>Purchase the ad-free upgrade from the in-app store to remove all banner and rewarded ads.</p>
+        </div>
+      </details> -->
+
+      <!-- <details class="faq-item">
+        <summary>Is my data synced across devices?</summary>
+        <div class="faq-content">
+          <p>Yes, if you're logged in with the same account, your progress will sync automatically.</p>
+        </div>
+      </details> -->
+
+      <details class="faq-item">
+        <summary>Who can I contact for help?</summary>
+        <div class="faq-content">
+          <p>Use the contact form below or email us at <a
+              href="mailto:numberoodlehelp@yahoo.com">numberoodlehelp@yahoo.com</a>.</p>
+        </div>
+      </details>
+    </section>
+
+    <section class="form-section">
       <form action="mailto:numberoodlehelp@yahoo.com" method="POST" enctype="text/plain">
-        <input type="text" name="name" placeholder="Your Name" required />
-        <input type="email" name="email" placeholder="Your Email" required />
-        <textarea name="message" rows="6" placeholder="Describe your issue..." required></textarea>
-        <button type="submit">Send Message</button>
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="message">What issue are you experiencing?</label>
+        <textarea id="message" name="message" rows="6" required></textarea>
+
+        <button type="submit">Submit</button>
       </form>
     </section>
   </main>
-  <footer>
-    &copy; 2025 Numberoodle. All rights reserved.
-  </footer>
+
 </body>
+
 </html>
