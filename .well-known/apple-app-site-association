@@ -4,12 +4,7 @@
     "details": [
       {
         "appID": "8RPKYXQ737.com.marvinaquino.numberlink",
-        "components":[
-          {
-            "/":"/numberoodle",
-            "comment":"Matches URL with a path /numberoodle"
-          }
-        ]
+        "paths":["*"]
       }
     ]
   }
