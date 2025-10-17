@@ -1,0 +1,88 @@
+name: Deploy HLCMMN Flutter Web to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+env:
+  REPO_NAME: "hlcmmn"
+  FLUTTER_VERSION: "3.24.0"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+
+      - name: Flutter pub get
+        run: flutter pub get
+
+      - name: Build Login (doctorsdirectory)
+        run: |
+          flutter build web -t lib/main_login.dart --release --base-href /${{ env.REPO_NAME }}/doctorsdirectory/
+          mkdir -p dist/doctorsdirectory
+          cp -r build/web/* dist/doctorsdirectory/
+
+      - name: Build Participants
+        run: |
+          flutter build web -t lib/main_participants.dart --release --base-href /${{ env.REPO_NAME }}/participants/
+          mkdir -p dist/participants
+          cp -r build/web/* dist/participants/
+
+      - name: Create root index.html
+        run: |
+          mkdir -p dist
+          cat > dist/index.html <<'HTML'
+          <!doctype html>
+          <html>
+          <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>HLC MMN Apps</title>
+            <style>
+              body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif;margin:2rem;line-height:1.4}
+              a{display:inline-block;margin:.5rem 0;padding:.75rem 1rem;border:1px solid #ddd;border-radius:8px;text-decoration:none;color:#0366d6}
+              a:hover{background:#f6f8fa}
+            </style>
+          </head>
+          <body>
+            <h1>HLC MMN Apps</h1>
+            <p>Select an app:</p>
+            <p><a href="./doctorsdirectory/">Doctors Directory (Login)</a></p>
+            <p><a href="./participants/">Participants Management</a></p>
+          </body>
+          </html>
+          HTML
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
