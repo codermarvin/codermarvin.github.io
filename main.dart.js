@@ -76341,7 +76341,7 @@ n=A.dq(n,B.ab,B.E,B.y)
 p=n}return p},
 $S:491}
 A.aeD.prototype={
-$1(a){var s=null,r=A.b(["jw","consultant"],t.s),q=B.c.aK(a)
+$1(a){var s=null,r=A.b(["jw","consultant","new"],t.s),q=B.c.aK(a)
 if(B.b.n(r,q.toLowerCase())){r=A.qk(4)
 r=A.d2(s,A.aZ(q,s,s,s,s,s,s,s,B.F.b_(B.i),s,s,s),B.r,s,new A.cv(B.a1,s,s,r,s,s,B.a9),s,B.mg,B.mj,s)}else r=B.am
 return r},
