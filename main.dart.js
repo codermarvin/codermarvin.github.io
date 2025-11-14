@@ -76376,7 +76376,7 @@ if(m==null)m=""
 k=k+"\n\nHospital: "+o+"\nClinic Hours: "+n+"\nClinic Number: "+m}A.a9R(k+u.w)},
 $S:0}
 A.aeG.prototype={
-$1(a){var s=null,r=A.b(["jw","consultant"],t.s),q=B.c.aK(a)
+$1(a){var s=null,r=A.b(["jw","consultant","new"],t.s),q=B.c.aK(a)
 if(B.b.n(r,q.toLowerCase())){r=A.qk(4)
 r=A.d2(s,A.aZ(q,s,s,s,s,s,s,s,B.F.b_(B.i),s,s,s),B.r,s,new A.cv(B.a1,s,s,r,s,s,B.a9),s,B.mg,B.mj,s)}else r=B.am
 return r},
