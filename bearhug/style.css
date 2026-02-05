@@ -1,0 +1,354 @@
+:root {
+    /* Color Palette derived from screenshots */
+    --bg-color: #F2F9F6;
+    /* Pale Mint bg */
+    --primary-color: #FFC4CC;
+    /* Pastel Pink button */
+    --primary-hover: #ffb0bc;
+    --text-color: #4A4A4A;
+    /* Soft Black */
+    --text-light: #7A7A7A;
+    --white: #FFFFFF;
+    --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+
+    /* Input colors */
+    --input-bg: #F0F0F0;
+    /* Light grey for input fields as seen in screenshot */
+    --input-text: #666;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    width: 100%;
+    margin: 0 auto;
+    /* Increased max-width to accommodate side-by-side */
+    max-width: 1100px;
+}
+
+.hero {
+    width: 100%;
+}
+
+.hero-split {
+    display: flex;
+    flex-direction: column-reverse;
+    /* Stack on mobile, content bottom */
+    align-items: center;
+    gap: 2rem;
+}
+
+/* Content Side (Left on Desktop) */
+.content-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Center on mobile */
+    text-align: center;
+    max-width: 500px;
+}
+
+/* Preview Side (Right on Desktop) */
+.preview-side {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.phone-frame {
+    background: #fff;
+    border-radius: 40px;
+    padding: 12px;
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.1),
+        0 0 0 2px rgba(255, 196, 204, 0.4);
+    /* Subtle pink ring */
+    max-width: 280px;
+    /* Restrict phone size */
+    width: 100%;
+    transform: rotate(-3deg);
+    /* Jaunty angle */
+    transition: transform 0.3s ease;
+}
+
+.phone-frame:hover {
+    transform: rotate(0deg) scale(1.02);
+}
+
+.app-screenshot {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 32px;
+    border: 1px solid #f0f0f0;
+}
+
+/* Logo Area */
+.logo-area h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text-color);
+    margin-bottom: 0.2rem;
+}
+
+.tagline {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+/* Mascot */
+.mascot-container {
+    margin: 1rem 0;
+    /* animation: float 6s ease-in-out infinite; */
+    /* Optional: disable float if images are static */
+}
+
+.mascot-img {
+    max-width: 200px;
+    /* Slightly smaller to fit layout */
+    height: auto;
+    display: block;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Text Content */
+.text-content h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.description {
+    color: var(--text-light);
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+/* Waitlist Card */
+.waitlist-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 24px;
+    width: 100%;
+    box-shadow: var(--card-shadow);
+    margin-top: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.waitlist-card h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+}
+
+.waitlist-card p {
+    margin-bottom: 1.5rem;
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+
+/* Form Styles */
+/* Form Styles */
+.input-group {
+    display: flex;
+    flex-direction: row;
+    /* Force row layout always */
+    gap: 0.5rem;
+    background: var(--input-bg);
+    border-radius: 16px;
+    padding: 0.3rem;
+    width: 100%;
+    align-items: center;
+    /* Center vertically */
+}
+
+input[type="email"] {
+    flex: 1;
+    /* Allow input to fill space */
+    width: auto;
+    /* Let flex handle width */
+    background: transparent;
+    /* Remove bg to blend with container */
+    padding: 0.8rem 1rem;
+    border-radius: 12px;
+    border: none;
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--input-text);
+    outline: none;
+    margin-bottom: 0;
+}
+
+input[type="email"]:focus {
+    box-shadow: none;
+    /* Remove focus ring on input itself, maybe highlight container if needed, but clean for now */
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    width: auto;
+    /* Allow button to size to text */
+    white-space: nowrap;
+    /* Prevent text wrapping */
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-1px);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+input[type="email"].error {
+    border: 2px solid #ef4444;
+    /* Red border */
+    background-color: #fef2f2;
+    color: #b91c1c;
+}
+
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    50% {
+        transform: translateX(5px);
+    }
+
+    75% {
+        transform: translateX(-5px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* Success Message */
+.hidden {
+    display: none;
+}
+
+#successMessage {
+    background-color: #E8F5E9;
+    color: #2E7D32;
+    padding: 1rem;
+    border-radius: 12px;
+    margin-top: 1rem;
+    font-weight: 600;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+footer {
+    padding: 2rem;
+    text-align: center;
+    color: var(--text-light);
+    font-size: 0.8rem;
+    margin-top: auto;
+}
+
+/* Responsive */
+@media (min-width: 480px) {
+    /* Styles are now global for the input group */
+}
+
+@media (min-width: 850px) {
+    .hero-split {
+        flex-direction: row;
+        text-align: left;
+        gap: 4rem;
+    }
+
+    .content-side {
+        align-items: flex-start;
+        /* Align text left on desktop */
+        text-align: left;
+    }
+
+    .logo-area,
+    .text-content {
+        align-items: flex-start;
+    }
+
+    .mascot-container {
+        align-self: flex-start;
+        /* Or center if we want mascot centered above text */
+        margin-left: 2rem;
+        /* Nudge mascot slightly */
+    }
+
+    .phone-frame {
+        max-width: 320px;
+        /* Larger phone on desktop */
+    }
+}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You! - Bear Hug</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Specific override for thank you page to center everything */
+        .thankyou-container {
+            text-align: center;
+            flex-direction: column;
+            max-width: 600px;
+        }
+
+        .thankyou-message h1 {
+            color: var(--text-color);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .thankyou-message p {
+            color: var(--text-light);
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .home-btn {
+            display: inline-block;
+            background-color: var(--white);
+            color: var(--text-color);
+            padding: 1rem 2rem;
+            border-radius: 16px;
+            text-decoration: none;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: all 0.2s;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .home-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            color: var(--primary-color);
+        }
+
+        /* Override global desktop styles that force left alignment */
+        .thankyou-container .mascot-container {
+            align-self: center !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="container thankyou-container">
+
+        <div class="mascot-container">
+            <img src="bear_thankyou.png" alt="Happy bear holding a heart" class="mascot-img"
+                style="max-width: 280px; display: block; margin: 0 auto;">
+        </div>
+
+        <div class="thankyou-message">
+            <h1>You're on the list!</h1>
+            <p>Thank you for joining the family. We can't wait to share a Bear Hug with you soon.</p>
+        </div>
+
+        <a href="index.html" class="home-btn">Back to Home</a>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Bear Hug. All rights reserved.</p>
+    </footer>
+
+</body>
+
+</html>

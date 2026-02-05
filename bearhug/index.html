@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bear Hug - Your Gentle Daily Companion</title>
+    <!-- Google Fonts: Nunito for rounded, friendly look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-split">
+                <!-- Left Content: Text & Form -->
+                <div class="content-side">
+                    <div class="logo-area">
+                        <h1>Bear Hug</h1>
+                    </div>
+
+                    <div class="text-content">
+                        <h2>A gentle daily check-in with a cozy bear by your side.</h2>
+                        <p class="description">Track moods, journal, and unwind with small grounding tools—made for real
+                            life.</p>
+                    </div>
+
+                    <!-- Waitlist Form -->
+                    <div class="waitlist-card">
+                        <h3>Join the Waitlist</h3>
+                        <p>Be the first to get a hug when we launch!</p>
+
+                        <!-- 
+                            IMPORTANT: 
+                            Replace <FORM_ACTION_URL> with the Google Form action URL.
+                            Replace <EMAIL_ENTRY_ID> with the 'entry.xxxxxx' ID for the email field.
+                        -->
+                        <form id="waitlistForm"
+                            action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSfrr74XmK4teIzxUBkYPt4YNz0yqO1buGKEj9iTImE9MZqYKQ/formResponse"
+                            method="POST" target="hidden_iframe" onsubmit="return handleFormSubmit()">
+                            <div class="input-group">
+                                <!-- Hidden Name field to prevent validation errors -->
+                                <input type="email" name="entry.960559102" id="email" required>
+                                <button type="submit" class="btn-primary">Notify Me</button>
+                            </div>
+                        </form>
+
+                        <!-- Hidden iframe to prevent page redirect on Google Form submit -->
+                        <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"
+                            onload="if(submitted) {window.location='thankyou.html';}"></iframe>
+
+                        <!-- Hidden iframe removed for debugging -->
+
+                        <div id="successMessage" class="hidden">
+                            <p>✨ You've been added! Thank you! ✨</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Content: App Preview -->
+                <div class="preview-side">
+                    <div class="phone-frame">
+                        <img src="app_preview.png" alt="Bear Hug App Screenshot" class="app-screenshot">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Bear Hug. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
