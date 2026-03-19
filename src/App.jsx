@@ -65,14 +65,14 @@ const projects = [
     tags: ['Flutter', 'Social', 'E-commerce', 'Mobile'],
     link: 'https://regalatop.cl/',
   },
-  {
-    name: 'Kaya',
-    type: 'Service Marketplace',
-    description:
-      'Connects with reliable service providers. Designed and delivered a scalable Flutter marketplace app from concept to release.',
-    tags: ['Flutter', 'Marketplace', 'Service Providers', 'Architecture'],
-    link: '#',
-  },
+  // {
+  //   name: 'Kaya',
+  //   type: 'Service Marketplace',
+  //   description:
+  //     'Connects with reliable service providers. Designed and delivered a scalable Flutter marketplace app from concept to release.',
+  //   tags: ['Flutter', 'Marketplace', 'Service Providers', 'Architecture'],
+  //   link: '#',
+  // },
   {
     name: 'bXTRA PH',
     type: 'Rewards & Cashback',
@@ -95,7 +95,7 @@ const projects = [
     description:
       'Helps record, organize, and track ministry activities for Jehovah’s Witnesses. Supports 17 languages. Available in Google Play and Apple Store.',
     tags: ['Flutter', 'Firebase', 'Localization', 'AdMob'],
-    link: '#',
+    link: 'https://codermarvin.github.io/fsr/',
   },
 ];
 
@@ -387,7 +387,7 @@ export default function App() {
           <SectionTitle
             eyebrow="Projects"
             title="Selected mobile work"
-            subtitle="Use real GitHub links, app store links, or case study links here for maximum impact."
+            subtitle="A collection of production-ready mobile applications, ranging from enterprise platforms to localized utility tools."
           />
 
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
