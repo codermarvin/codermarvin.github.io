@@ -10,6 +10,8 @@ import {
   Briefcase,
   GraduationCap,
   Sparkles,
+  Apple,
+  Play,
 } from 'lucide-react';
 import SectionTitle from './components/SectionTitle';
 import ProjectCard from './components/ProjectCard';
@@ -35,6 +37,8 @@ const skills = [
 const GITHUB_USERNAME = 'codermarvin';
 const LINKEDIN_USERNAME = 'codermarvin';
 const EMAIL_ADDRESS = 'heymarvin@yahoo.com';
+const GOOGLE_PLAY_URL = 'https://play.google.com/store/apps/developer?id=Marvin+Aquino';
+const APP_STORE_URL = 'https://apps.apple.com/us/developer/marvin-aquino/id1567403944';
 
 const projects = [
   {
@@ -223,19 +227,39 @@ export default function App() {
                   LinkedIn
                 </a>
 
-                <a
+                {/* <a
                   href={`mailto:${EMAIL_ADDRESS}`}
                   className="inline-flex items-center rounded-2xl border border-white/10 bg-white/5 px-5 py-3 font-medium text-white transition hover:bg-white/10"
                 >
                   <Mail className="mr-2 h-4 w-4" />
                   Email Me
+                </a> */}
+
+                <a
+                  href={GOOGLE_PLAY_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center rounded-2xl border border-white/10 bg-white/5 px-5 py-3 font-medium text-white transition hover:bg-white/10"
+                >
+                  <Play className="mr-2 h-4 w-4" />
+                  Google Play
+                </a>
+
+                <a
+                  href={APP_STORE_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center rounded-2xl border border-white/10 bg-white/5 px-5 py-3 font-medium text-white transition hover:bg-white/10"
+                >
+                  <Apple className="mr-2 h-4 w-4" />
+                  App Store
                 </a>
               </div>
 
               <div className="mt-10 grid gap-4 sm:grid-cols-3">
                 {[
                   { label: 'Years in Software', value: '20+' },
-                  { label: 'Mobile Focus', value: 'Senior Level' },
+                  { label: 'Years in Flutter', value: '5+' },
                   { label: 'Platforms', value: 'iOS + Android' },
                 ].map((item) => (
                   <div key={item.label} className="glass rounded-3xl p-5">
@@ -424,6 +448,26 @@ export default function App() {
               >
                 <Linkedin className="mr-2 h-4 w-4" />
                 LinkedIn
+              </a>
+
+              <a
+                href={GOOGLE_PLAY_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center rounded-2xl border border-white/10 bg-white/5 px-5 py-3 font-medium text-white transition hover:bg-white/10"
+              >
+                <Play className="mr-2 h-4 w-4" />
+                Google Play
+              </a>
+
+              <a
+                href={APP_STORE_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center rounded-2xl border border-white/10 bg-white/5 px-5 py-3 font-medium text-white transition hover:bg-white/10"
+              >
+                <Apple className="mr-2 h-4 w-4" />
+                App Store
               </a>
             </div>
           </div>
