@@ -32,6 +32,8 @@ const skills = [
   'Agile / Remote Collaboration',
 ];
 
+const EMAIL_ADDRESS = 'heymarvin@yahoo.com';
+
 const projects = [
   {
     name: 'Gigasure',
@@ -135,7 +137,7 @@ export default function App() {
           </nav>
 
           <a
-            href="mailto:your-email@example.com"
+            href={`mailto:${EMAIL_ADDRESS}`}
             className="rounded-2xl border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-sm font-medium text-cyan-300 transition hover:bg-cyan-400/15"
           >
             Let’s Talk
@@ -188,7 +190,7 @@ export default function App() {
                 </a>
 
                 <a
-                  href="mailto:your-email@example.com"
+                  href={`mailto:${EMAIL_ADDRESS}`}
                   className="inline-flex items-center rounded-2xl border border-white/10 bg-white/5 px-5 py-3 font-medium text-white transition hover:bg-white/10"
                 >
                   <Mail className="mr-2 h-4 w-4" />
@@ -363,11 +365,11 @@ export default function App() {
 
             <div className="mt-8 flex flex-wrap gap-4">
               <a
-                href="mailto:your-email@example.com"
+                href={`mailto:${EMAIL_ADDRESS}`}
                 className="inline-flex items-center rounded-2xl bg-cyan-500 px-5 py-3 font-medium text-slate-950 transition hover:bg-cyan-400"
               >
                 <Mail className="mr-2 h-4 w-4" />
-                your-email@example.com
+                {EMAIL_ADDRESS}
               </a>
 
               <a
