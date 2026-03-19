@@ -32,6 +32,8 @@ const skills = [
   'Agile / Remote Collaboration',
 ];
 
+const GITHUB_USERNAME = 'codermarvin';
+const LINKEDIN_USERNAME = 'codermarvin';
 const EMAIL_ADDRESS = 'heymarvin@yahoo.com';
 
 const projects = [
@@ -39,23 +41,55 @@ const projects = [
     name: 'Gigasure',
     type: 'Insurance Platform',
     description:
-      'Built a polished, high-performance Flutter experience with strong UX focus, third-party integrations, and production-level optimization for mobile users.',
-    tags: ['Flutter', 'APIs', 'Performance', 'Mobile UX'],
-    link: '#',
+      'The next generation of insurance. Built a polished, high-performance Flutter experience with strong UX focus, third-party integrations, and production-level optimization.',
+    tags: ['Flutter', 'Insurance', 'APIs', 'Mobile UX'],
+    link: 'https://gigasure.com/',
+  },
+  {
+    name: 'Racer',
+    type: 'Racing App',
+    description:
+      'Your all-in-one racing app. High-performance mobile experience for enthusiasts.',
+    tags: ['Flutter', 'Sports', 'Performance', 'UX'],
+    link: 'https://getracer.com/',
+  },
+  {
+    name: 'Regala Top - CL',
+    type: 'Virtual Gift List App',
+    description:
+      'Everyone’s favorite virtual gift list app. A social gifting platform for sharing and tracking gift wishlists.',
+    tags: ['Flutter', 'Social', 'E-commerce', 'Mobile'],
+    link: 'https://regalatop.cl/',
   },
   {
     name: 'Kaya',
-    type: 'Service Marketplace App',
+    type: 'Service Marketplace',
     description:
-      'Designed and delivered a scalable Flutter marketplace app from concept to release, including feature development, bug fixes, and performance improvements.',
-    tags: ['Flutter', 'Marketplace', 'Architecture', 'Release'],
+      'Connects with reliable service providers. Designed and delivered a scalable Flutter marketplace app from concept to release.',
+    tags: ['Flutter', 'Marketplace', 'Service Providers', 'Architecture'],
     link: '#',
+  },
+  {
+    name: 'bXTRA PH',
+    type: 'Rewards & Cashback',
+    description:
+      'Shopping and dining experience while enjoying exclusive Cashback rewards. Integrated rewards platform for retail and dining.',
+    tags: ['Flutter', 'Rewards', 'Cashback', 'Payments'],
+    link: 'https://bxtra.ph/',
+  },
+  {
+    name: 'MyBasurero',
+    type: 'Waste Collection Service',
+    description:
+      'Hassle-free, safe, and secure waste collection service. Streamlining waste management through digital solutions.',
+    tags: ['Flutter', 'Utility', 'Logistics', 'Sustainability'],
+    link: 'https://mybasurero.com.ph/',
   },
   {
     name: 'Field Service Record',
     type: 'Multilingual Utility App',
     description:
-      'A Flutter app supporting 17 languages with Firebase backend, monetization, and full Google Play / App Store publishing and maintenance.',
+      'Helps record, organize, and track ministry activities for Jehovah’s Witnesses. Supports 17 languages. Available in Google Play and Apple Store.',
     tags: ['Flutter', 'Firebase', 'Localization', 'AdMob'],
     link: '#',
   },
@@ -92,7 +126,7 @@ const experience = [
     company: 'Independent',
     summary:
       'Delivered custom mobile and web solutions for multiple clients, including multilingual Flutter apps, Firebase-backed platforms, and internal business systems.',
-    projects: ['Field Service Record', 'SM Retail Inc.', 'Project Monitoring System'],
+    projects: ['Field Service Record', 'Project Monitoring System'],
   },
   {
     years: '2003 – 2014',
@@ -100,7 +134,7 @@ const experience = [
     company: 'Z Getcare Systems, Inc.',
     summary:
       'Led development of healthcare and case management systems for US clients, mentored developers, and handled long-term system maintenance and enhancements.',
-    projects: [],
+    projects: ['HOMCare', 'PACECare', 'MSSPCare'],
   },
 ];
 
@@ -170,7 +204,7 @@ export default function App() {
 
               <div className="mt-8 flex flex-wrap gap-3">
                 <a
-                  href="https://github.com/yourusername"
+                  href={`https://github.com/${GITHUB_USERNAME}`}
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center rounded-2xl bg-cyan-500 px-5 py-3 font-medium text-slate-950 transition hover:bg-cyan-400"
@@ -180,7 +214,7 @@ export default function App() {
                 </a>
 
                 <a
-                  href="https://linkedin.com/in/codermarvin"
+                  href={`https://linkedin.com/in/${LINKEDIN_USERNAME}`}
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center rounded-2xl border border-white/10 bg-white/5 px-5 py-3 font-medium text-white transition hover:bg-white/10"
@@ -373,7 +407,7 @@ export default function App() {
               </a>
 
               <a
-                href="https://github.com/yourusername"
+                href={`https://github.com/${GITHUB_USERNAME}`}
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center rounded-2xl border border-white/10 bg-white/5 px-5 py-3 font-medium text-white transition hover:bg-white/10"
@@ -383,7 +417,7 @@ export default function App() {
               </a>
 
               <a
-                href="https://linkedin.com/in/codermarvin"
+                href={`https://linkedin.com/in/${LINKEDIN_USERNAME}`}
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center rounded-2xl border border-white/10 bg-white/5 px-5 py-3 font-medium text-white transition hover:bg-white/10"
