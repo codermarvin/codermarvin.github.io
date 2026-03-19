@@ -158,7 +158,12 @@ export default function App() {
 
       <header className="sticky top-0 z-50 border-b border-white/5 bg-slate-950/70 backdrop-blur-xl">
         <div className="section-container flex items-center justify-between py-4">
-          <a href="#top" className="text-lg font-semibold tracking-tight text-white">
+          <a href="#top" className="flex items-center gap-3 text-lg font-semibold tracking-tight text-white transition-colors hover:text-cyan-300">
+            <img
+              src="/profile.jpg"
+              alt="Marvin Aquino"
+              className="h-8 w-8 rounded-full border border-white/10 object-cover"
+            />
             Marvin Aquino
           </a>
 
@@ -274,9 +279,20 @@ export default function App() {
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="glass rounded-[2rem] p-6 shadow-glow"
+              className="glass relative flex flex-col items-center gap-6 rounded-[2rem] p-6 shadow-glow"
             >
-              <div className="rounded-[1.5rem] border border-white/10 bg-slate-900/70 p-6">
+              <div className="relative group">
+                <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-cyan-500 to-purple-500 opacity-25 blur transition duration-1000 group-hover:opacity-50 group-hover:duration-200"></div>
+                <div className="relative h-48 w-48 overflow-hidden rounded-full border-2 border-white/10 shadow-2xl md:h-64 md:w-64">
+                  <img
+                    src="/profile.jpg"
+                    alt="Marvin Aquino"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                </div>
+              </div>
+
+              <div className="w-full rounded-[1.5rem] border border-white/10 bg-slate-900/70 p-6">
                 <div className="mb-5 flex items-center gap-3">
                   <div className="rounded-2xl bg-cyan-400/10 p-3">
                     <Smartphone className="h-6 w-6 text-cyan-300" />
