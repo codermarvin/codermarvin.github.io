@@ -4,7 +4,11 @@
     "details": [
       {
         "appID": "8RPKYXQ737.com.marvinaquino.numberlink",
-        "paths":["*"]
+        "paths": [
+          "NOT /hlcmmn/doctorsdirectory/*",
+          "NOT /hlcmmn/doctorsdirectory",
+          "*"
+        ]
       }
     ]
   }
