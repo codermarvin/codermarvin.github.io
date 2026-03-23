@@ -1,6 +1,6 @@
 # Marvin Aquino Portfolio
 
-Modern portfolio website built with **React + Vite + Tailwind CSS**.
+Personal portfolio website showcasing my Flutter projects, skills, and experience. Built with **React + Vite + Tailwind CSS**.
 
 ## Features
 - Responsive modern dark UI
