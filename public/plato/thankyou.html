@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You - Plato</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .thank-you-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 80vh;
+            text-align: center;
+        }
+        .thank-you-container h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .thank-you-container p {
+            font-size: 1.5rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+        .back-btn {
+            display: inline-block;
+            text-decoration: none;
+            background: var(--primary-gradient);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 16px;
+            font-weight: 700;
+            transition: transform 0.3s ease;
+        }
+        .back-btn:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <div class="thank-you-container">
+            <div class="plato-logo" style="margin-bottom: 2rem;">
+                <img src="logo.png" alt="Plato Logo" style="width: 100%; height: auto;">
+            </div>
+            <h1>You're on the list!</h1>
+            <p>Thanks for joining the Plato community. We'll be in touch soon with exciting updates.</p>
+            <a href="index.html" class="back-btn">Back to Home</a>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2026 Plato. All rights reserved.</p>
+    </footer>
+</body>
+</html>

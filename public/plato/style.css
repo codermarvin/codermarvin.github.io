@@ -1,0 +1,243 @@
+:root {
+    --primary-color: #FF6B6B;
+    --primary-gradient: linear-gradient(135deg, #FF6B6B, #FF8E53);
+    --primary-hover: #fa5252;
+    --bg-color: #ffffff;
+    --text-color: #1A1A1A;
+    --text-light: #666666;
+    --card-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    --input-bg: #F8F9FA;
+    --white: #FFFFFF;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    width: 100%;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.hero {
+    width: 100%;
+}
+
+.hero-split {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 3rem;
+    animation: fadeIn 1s ease-out;
+}
+
+.content-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 550px;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.plato-logo {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.plato-logo img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.logo-area h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.text-content h2 {
+    font-size: 3rem;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+}
+
+.description {
+    font-size: 1.25rem;
+    color: var(--text-light);
+    margin-bottom: 2.5rem;
+}
+
+.waitlist-card {
+    background: var(--white);
+    padding: 3rem;
+    border-radius: 32px;
+    width: 100%;
+    box-shadow: var(--card-shadow);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.waitlist-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.waitlist-card p {
+    color: var(--text-light);
+    margin-bottom: 2rem;
+}
+
+.input-group {
+    display: flex;
+    gap: 0.75rem;
+    background: var(--input-bg);
+    border-radius: 20px;
+    padding: 0.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.input-group:focus-within {
+    background: var(--white);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.1);
+}
+
+input[type="email"] {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+    font-family: inherit;
+    outline: none;
+    color: var(--text-color);
+}
+
+.btn-primary {
+    background: var(--primary-gradient);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 16px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(255, 107, 107, 0.3);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+/* Preview Side */
+.preview-side {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.phone-frame {
+    background: #000;
+    border-radius: 50px;
+    padding: 12px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+    max-width: 320px;
+    width: 100%;
+    transform: perspective(1000px) rotateY(-5deg) rotateX(5deg);
+    transition: all 0.5s ease;
+}
+
+.phone-frame:hover {
+    transform: perspective(1000px) rotateY(0) rotateX(0) scale(1.05);
+}
+
+.app-screenshot {
+    width: 100%;
+    height: auto;
+    border-radius: 38px;
+    display: block;
+}
+
+footer {
+    padding: 3rem;
+    text-align: center;
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (min-width: 900px) {
+    .hero-split {
+        flex-direction: row;
+        text-align: left;
+        gap: 6rem;
+    }
+
+    .content-side {
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .logo-area {
+        margin-bottom: 3rem;
+    }
+
+    .text-content h2 {
+        font-size: 4rem;
+    }
+}
+
+.hidden { display: none; }
+#successMessage {
+    background: #f0fff4;
+    color: #2f855a;
+    padding: 1.5rem;
+    border-radius: 16px;
+    margin-top: 1.5rem;
+    text-align: center;
+    font-weight: 600;
+}

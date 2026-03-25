@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plato - Discover & Share Amazing Recipes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-split">
+                <!-- Left Content: Text & Form -->
+                <div class="content-side">
+                    <div class="logo-area">
+                        <div class="plato-logo">
+                            <img src="logo.png" alt="Plato Logo" style="width: 100%; height: auto;">
+                        </div>
+                        <h1>Plato</h1>
+                    </div>
+
+                    <div class="text-content">
+                        <h2>Discover & Share Amazing Recipes</h2>
+                        <p class="description">Join the community of food lovers. Share your kitchen adventures and find inspiration for your next meal.</p>
+                    </div>
+
+                    <div class="waitlist-card">
+                        <h3>Join the Waitlist</h3>
+                        <p>Be the first to know when we launch and get early access!</p>
+
+                        <form id="waitlistForm" onsubmit="return handleFormSubmit(event)">
+                            <div class="input-group">
+                                <input type="email" id="email" placeholder="Enter your email" required>
+                                <button type="submit" class="btn-primary">Keep Me Posted</button>
+                            </div>
+                        </form>
+
+                        <div id="successMessage" class="hidden">
+                            <p>✨ You've been added to the list! ✨</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Content: App Preview -->
+                <div class="preview-side">
+                    <div class="phone-frame">
+                        <img src="app_preview.png" alt="Plato App Screenshot" class="app-screenshot">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Plato. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
