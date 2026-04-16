@@ -137,6 +137,7 @@
             margin-bottom: 25px;
             background: var(--gradient-main);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
@@ -366,6 +367,26 @@
             .nav-links {
                 display: none;
                 /* Simplify for mobile nav */
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                padding: 15px 4%;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .logo-b {
+                width: 28px;
+                height: 28px;
+            }
+
+            .btn-download-nav {
+                padding: 8px 12px;
+                font-size: 12px;
             }
         }
     </style>

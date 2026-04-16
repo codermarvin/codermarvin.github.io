@@ -119,6 +119,7 @@
             margin-bottom: 20px;
             background: var(--gradient-main);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
@@ -281,6 +282,41 @@
         .copyright {
             color: #555;
             font-size: 14px;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 968px) {
+            .nav-links {
+                display: none;
+            }
+
+            .content-container {
+                padding-top: 120px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                padding: 15px 4%;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .logo-b {
+                width: 28px;
+                height: 28px;
+            }
+
+            .btn-download-nav {
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+
+            .page-title {
+                font-size: 32px;
+            }
         }
     </style>
 </head>
