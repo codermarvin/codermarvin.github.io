@@ -2,229 +2,384 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Support - KLU</title>
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Rubik', sans-serif;
-      background: #ffffff;
-      color: #111;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support - KLU | Five Clues Game</title>
+    <meta name="description"
+        content="Need help with KLU? Check our FAQ or contact our support team. We're here to help you solve the mystery.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --primary-yellow: #FFD54F;
+            --secondary-yellow: #F9A825;
+            --dark-bg: #0A0A0B;
+            --card-bg: #141416;
+            --text-white: #FFFFFF;
+            --text-gray: #A1A1A6;
+            --accent-purple: #6448fe;
+            --accent-pink: #ff52d9;
+            --gradient-main: linear-gradient(135deg, #6448fe 0%, #ff52d9 100%);
+        }
 
-    header {
-      text-align: center;
-      padding: 2rem 1rem 1rem;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    h1 {
-      font-size: 2.2rem;
-      margin-bottom: 0.5rem;
-    }
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-white);
+            line-height: 1.6;
+        }
 
-    p {
-      max-width: 600px;
-      margin: 0 auto;
-      color: #444;
-    }
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(10, 10, 11, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
 
-    main {
-      max-width: 700px;
-      margin: 2rem auto;
-      padding: 0;
-    }
+        .logo {
+            display: flex;
+            gap: 5px;
+            text-decoration: none;
+            color: white;
+            font-weight: 900;
+            font-size: 24px;
+        }
 
-    .faq-section,
-    .form-section {
-      padding: 0 1rem;
-    }
+        .logo-b {
+            width: 32px;
+            height: 32px;
+            background: var(--primary-yellow);
+            color: black;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 3px 0 var(--secondary-yellow);
+        }
 
-    .faq-section h2 {
-      font-size: 1.4rem;
-      margin-bottom: 1rem;
-    }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
 
-    details.faq-item {
-      border: 1px solid #ddd;
-      border-radius: 12px;
-      background-color: #f9f9f9;
-      margin-bottom: 0.75rem;
-      overflow: hidden;
-      transition: box-shadow 0.3s ease;
-    }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-gray);
+            font-weight: 600;
+            transition: color 0.3s;
+        }
 
-    summary {
-      cursor: pointer;
-      font-weight: 500;
-      font-size: 1.05rem;
-      padding: 1rem;
-      list-style: none;
-    }
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-yellow);
+        }
 
-    summary::-webkit-details-marker {
-      display: none;
-    }
+        .btn-download-nav {
+            background: var(--primary-yellow);
+            color: black;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 14px;
+            text-decoration: none;
+            transition: transform 0.2s;
+        }
 
-    .faq-item[open] {
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    }
+        .btn-download-nav:hover {
+            transform: scale(1.05);
+        }
 
-    .faq-content {
-      max-height: 0;
-      overflow: hidden;
-      padding: 0 1rem;
-      color: #333;
-      font-size: 1rem;
-      transition: max-height 0.4s ease, padding 0.4s ease;
-    }
+        /* Support Content */
+        .content-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 150px 5% 100px;
+        }
 
-    .faq-item[open] .faq-content {
-      max-height: 250px;
-      padding: 0.5rem 1rem 1rem;
-    }
+        .page-title {
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-    .faq-content p {
-      margin: 0;
-    }
+        .page-subtitle {
+            font-size: 18px;
+            color: var(--text-gray);
+            margin-bottom: 60px;
+        }
 
-    /* Form Section */
-    form {
-      display: flex;
-      flex-direction: column;
-    }
+        section {
+            margin-bottom: 80px;
+        }
 
-    label {
-      margin-top: 1.2rem;
-      font-size: 0.95rem;
-      font-weight: 500;
-    }
+        h2 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-top: 50px;
+            margin-bottom: 15px;
+        }
 
-    input,
-    textarea {
-      width: 100%;
-      background: #f5f5f5;
-      border: 1px solid #ccc;
-      border-radius: 12px;
-      padding: 0.75rem;
-      font-size: 1rem;
-      margin-top: 0.3rem;
-      box-sizing: border-box;
-    }
+        .content-container a {
+            color: var(--primary-yellow);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255, 213, 79, 0.3);
+            transition: all 0.3s;
+        }
 
-    textarea {
-      resize: vertical;
-    }
+        .content-container a:hover {
+            color: var(--secondary-yellow);
+            border-bottom-color: var(--secondary-yellow);
+        }
 
-    button {
-      margin-top: 1.5rem;
-      background: #4aa1ff;
-      color: white;
-      border: none;
-      padding: 0.9rem 2rem;
-      font-size: 1rem;
-      border-radius: 999px;
-      cursor: pointer;
-      align-self: flex-start;
-    }
-  </style>
+        /* FAQ Styles */
+        details {
+            background: var(--card-bg);
+            border-radius: 16px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        summary {
+            padding: 20px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 18px;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        summary::after {
+            content: '+';
+            color: var(--primary-yellow);
+            font-size: 24px;
+            transition: transform 0.3s;
+        }
+
+        details[open] summary::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-content {
+            padding: 0 20px 20px;
+            color: var(--text-gray);
+        }
+
+        /* Form Styles */
+        .contact-form {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text-gray);
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            max-width: 100%;
+            background: #1e1e24;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 15px;
+            color: white;
+            font-family: inherit;
+            font-size: 16px;
+            transition: border-color 0.3s;
+            display: block;
+            resize: vertical;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary-yellow);
+        }
+
+        .btn-submit {
+            background: var(--primary-yellow);
+            color: black;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 12px;
+            font-weight: 900;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Footer Unified */
+        footer {
+            padding: 100px 5% 50px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-logo {
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 40px;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .copyright {
+            color: #555;
+            font-size: 14px;
+        }
+    </style>
 </head>
 
 <body>
 
-  <header>
-    <h1>SUPPORT</h1>
-    <p>If you're experiencing issues with KLU, fill out the form below and we’ll get back to you as soon as
-      possible.</p>
-  </header>
+    <nav>
+        <a href="index.html" class="logo">
+            <div class="logo-b">K</div>
+            <div class="logo-b">L</div>
+            <div class="logo-b">U</div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html#hero">Home</a></li>
+            <li><a href="index.html#features">Features</a></li>
+            <li><a href="support.html" class="active">Support</a></li>
+            <li><a href="privacy.html">Privacy</a></li>
+        </ul>
+        <a href="index.html" class="btn-download-nav">Download Now</a>
+    </nav>
 
-  <main>
-    <section class="faq-section">
-      <h2>Frequently Asked Questions</h2>
+    <main class="content-container">
+        <h1 class="page-title">SUPPORT</h1>
+        <p class="page-subtitle">Experiencing issues with KLU? We're here to help you get back to solving the mystery.
+        </p>
 
-      <details class="faq-item">
-        <summary>What is KLU?</summary>
-        <div class="faq-content">
-          <p>KLU is a word puzzle game where you must guess one hidden word using up to five clues. The challenge is to
-            solve it as early as possible because fewer clues used means a higher score, and fast answers can also earn
-            bonus points before the timer runs out.</p>
+        <section>
+            <h2>Frequently Asked Questions</h2>
+
+            <details>
+                <summary>What is KLU?</summary>
+                <div class="faq-content">
+                    <p>KLU is a word puzzle game where you must guess one hidden word using up to five clues. Fewer
+                        clues used means a higher score!</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>How do I play KLU?</summary>
+                <div class="faq-content">
+                    <p>Each puzzle starts with the first clue. Tap the letters in the bank to fill the answer boxes.
+                        More clues unlock if you need extra help.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>How is scoring calculated?</summary>
+                <div class="faq-content">
+                    <p>Your score is based on speed and hint usage. Solving quickly with fewer hints earns the highest
+                        rewards.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>Do I need an account?</summary>
+                <div class="faq-content">
+                    <p>No, you can play as a guest. However, creating an account helps you sync progress and track your
+                        place on the global leaderboard.</p>
+                </div>
+            </details>
+        </section>
+
+        <section>
+            <h2>Contact Us</h2>
+            <div class="contact-form">
+                <form action="mailto:kluhelp@yahoo.com" method="POST" enctype="text/plain">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your name" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="message">What issue are you experiencing?</label>
+                        <textarea id="message" name="message" rows="6" placeholder="Describe the issue in detail..."
+                            required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">Submit Request</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="logo footer-logo">
+            <div class="logo-b">K</div>
+            <div class="logo-b">L</div>
+            <div class="logo-b">U</div>
         </div>
-      </details>
+        <ul class="footer-links">
+            <li><a href="support.html">Support</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+        </ul>
+        <p class="copyright">© 2026 Marvin Aquino. All rights reserved.</p>
+    </footer>
 
-      <details class="faq-item">
-        <summary>How do I play KLU?</summary>
-        <div class="faq-content">
-          <p>Each puzzle starts with the first clue and a set of letters in a letter bank. You tap the letters to fill
-            the answer boxes and try to guess the correct word, with more clues unlocking one by one if you need extra
-            help.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>How is scoring calculated?</summary>
-        <div class="faq-content">
-          <p>Your score is based on how quickly you solve the puzzle and how many hints you used. Solving the word with
-            fewer hints gives more points, and beating the timer can award additional bonus points.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>Can I still answer after all five hints are revealed?</summary>
-        <div class="faq-content">
-          <p>Yes, you can still keep guessing even after all five hints are shown. However, solving earlier usually
-            gives a better score than waiting for every clue.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>What is the letter bank?</summary>
-        <div class="faq-content">
-          <p>The letter bank is the group of letters shown for each puzzle that contains all the letters needed to spell
-            the correct answer. It helps narrow down possibilities while still keeping the challenge fun and strategic.
-          </p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>Do I need an account to play?</summary>
-        <div class="faq-content">
-          <p>No, KLU can support guest play so you can start immediately without signing in. Creating an account may
-            unlock features like cloud save, leaderboard tracking, and progress syncing across devices.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>Are there ads in KLU?</summary>
-        <div class="faq-content">
-          <p>KLU may include ads depending on the final release version. These can help keep the game free to play,
-            while optional purchases such as ad removal may be offered for players who want a cleaner experience.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>Who can I contact for help?</summary>
-        <div class="faq-content">
-          <p>Use the contact form below or email us at <a href="mailto:kluhelp@yahoo.com">kluhelp@yahoo.com</a>.</p>
-        </div>
-      </details>
-    </section>
-
-    <section class="form-section">
-      <form action="mailto:kluhelp@yahoo.com" method="POST" enctype="text/plain">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" required />
-
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required />
-
-        <label for="message">What issue are you experiencing?</label>
-        <textarea id="message" name="message" rows="6" required></textarea>
-
-        <button type="submit">Submit</button>
-      </form>
-    </section>
-  </main>
+    <script>lucide.createIcons();</script>
 
 </body>
 
