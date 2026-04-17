@@ -1,1 +1,508 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Numberoodle - Connect the Numbers | Official Website</title>
+    <meta name="description"
+        content="Connect numbers with vibrant lines in Numberoodle. A brain-boosting puzzle game with thousands of levels. Download now on iOS and Android.">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+    <link rel="shortcut icon" href="icons/favicon.ico">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+    <style>
+        :root {
+            --bg-light: #F8F9FA;
+            --text-dark: #1A1A1A;
+            --text-muted: #666666;
+            --primary-blue: #1A73E8;
+            --primary-blue-hover: #1557B0;
+            --accent-glow: rgba(26, 115, 232, 0.15);
+            --card-white: #FFFFFF;
+            --max-width: 1200px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Blobs Background */
+        .blobs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            filter: blur(80px);
+            opacity: 0.5;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            animation: float 20s infinite alternate;
+        }
+
+        .blob-1 {
+            width: 400px;
+            height: 400px;
+            background: rgba(74, 144, 226, 0.3);
+            top: -100px;
+            left: -100px;
+        }
+
+        .blob-2 {
+            width: 500px;
+            height: 500px;
+            background: rgba(245, 166, 35, 0.2);
+            bottom: -100px;
+            right: -100px;
+            animation-delay: -5s;
+        }
+
+        .blob-3 {
+            width: 300px;
+            height: 300px;
+            background: rgba(126, 211, 33, 0.2);
+            top: 40%;
+            left: 50%;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                transform: translate(100px, 50px) scale(1.1);
+            }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 0 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(248, 249, 250, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-logo {
+            height: 100px;
+            width: auto;
+            margin: -20px 0;
+            transition: transform 0.2s;
+            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.1));
+        }
+
+        .nav-logo:hover {
+            transform: scale(1.05);
+        }
+
+        .footer-logo-img {
+            height: 120px;
+            width: auto;
+            margin-bottom: 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-blue);
+        }
+
+        .btn-download-nav {
+            background: var(--primary-blue);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 14px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(26, 115, 232, 0.3);
+            transition: transform 0.2s, background 0.2s;
+            flex-shrink: 0;
+        }
+
+        .btn-download-nav:hover {
+            transform: scale(1.05);
+            background: var(--primary-blue-hover);
+        }
+
+        /* Hero Section */
+        section {
+            padding: 100px 5%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+            padding-top: 150px;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-title {
+            font-size: 64px;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            color: var(--text-dark);
+        }
+
+        .hero-title span {
+            color: var(--primary-blue);
+        }
+
+        .hero-subtitle {
+            font-size: 22px;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            max-width: 550px;
+        }
+
+        .store-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .store-btn {
+            height: 54px;
+            transition: transform 0.2s;
+        }
+
+        .store-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .store-btn img {
+            height: 100%;
+            border-radius: 10px;
+        }
+
+        .preview-side {
+            flex: 1;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .phone-frame {
+            width: 100%;
+            max-width: 320px;
+            aspect-ratio: 9 / 19.5;
+            background: #000;
+            border-radius: 40px;
+            padding: 10px;
+            box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.25);
+            position: relative;
+            overflow: hidden;
+            border: 8px solid #222;
+        }
+
+        .phone-frame video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 30px;
+        }
+
+        /* Features Section */
+        #features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding-bottom: 80px;
+        }
+
+        .feature-card {
+            background: var(--card-white);
+            padding: 40px;
+            border-radius: 32px;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--accent-glow);
+            color: var(--primary-blue);
+            border-radius: 24px;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .feature-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 16px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 5% 40px;
+            text-align: center;
+            background: white;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .footer-logo {
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 25px;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .copyright {
+            color: #AAA;
+            font-size: 14px;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 968px) {
+            #hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding-top: 120px;
+                gap: 40px;
+            }
+
+            .hero-title {
+                font-size: 48px;
+            }
+
+            .hero-subtitle {
+                margin: 0 auto 40px;
+            }
+
+            .store-buttons {
+                justify-content: center;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .phone-frame {
+                max-width: 280px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                padding: 5px 5%;
+                height: auto;
+            }
+
+            .btn-download-nav {
+                padding: 10px 18px;
+                font-size: 12px;
+            }
+
+            .nav-logo {
+                height: 70px;
+                transform: none;
+                margin: 0;
+            }
+
+            .nav-logo:hover {
+                transform: scale(1.05);
+            }
+
+            .footer-logo-img {
+                height: 80px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <nav>
+        <a href="#" class="logo-container">
+            <img src="logo.png" alt="Numberoodle Logo" class="nav-logo">
+        </a>
+        <ul class="nav-links">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="support.html">Support</a></li>
+            <li><a href="privacy.html">Privacy</a></li>
+        </ul>
+        <a href="#hero" class="btn-download-nav">Download Now</a>
+    </nav>
+
+    <section id="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Connect Numbers. <span>Unleash Logic.</span></h1>
+            <p class="hero-subtitle">Experience the most vibrant and addicting number puzzle game. Master thousands of
+                levels and sharpen your mind every day.</p>
+            <div class="store-buttons">
+                <a href="https://play.google.com/store/apps/details?id=com.marvinaquino.numberlink" class="store-btn">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+                        alt="Get it on Google Play">
+                </a>
+                <a href="https://apps.apple.com/us/app/numberoodle-number-puzzle-game/id6746166258" class="store-btn">
+                    <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg"
+                        alt="Download on App Store">
+                </a>
+            </div>
+        </div>
+        <div class="preview-side">
+            <div class="phone-frame">
+                <video autoplay muted loop playsinline>
+                    <source src="app_preview.webm" type="video/webm">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <section id="features">
+        <div class="feature-card">
+            <div class="feature-icon"><i data-lucide="layout-grid"></i></div>
+            <h3>Unlimited Puzzles</h3>
+            <p>From beginner to expert, explore thousands of hand-crafted levels that never get old.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><i data-lucide="zap"></i></div>
+            <h3>Vibrant Visuals</h3>
+            <p>Solve puzzles with beautiful, flowing colors that react to your every move.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><i data-lucide="brain"></i></div>
+            <h3>Brain Boosting</h3>
+            <p>Improve your logic and spatial reasoning with puzzles designed to challenge and delight.</p>
+        </div>
+    </section>
+
+    <footer>
+        <img src="logo.png" alt="Numberoodle Logo" class="footer-logo-img">
+        <ul class="footer-links">
+            <li><a href="support.html">Support</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+        </ul>
+        <p class="copyright">© 2025 Marvin Aquino. All rights reserved.</p>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // Smooth reveal animations
+        ScrollReveal().reveal('.hero-content', { delay: 200, distance: '50px', origin: 'left' });
+        ScrollReveal().reveal('.preview-side', { delay: 400, scale: 0.9, opacity: 0 });
+        ScrollReveal().reveal('.feature-card', { interval: 200, distance: '30px', origin: 'bottom' });
+
+        // Nav Active State
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

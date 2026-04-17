@@ -1,0 +1,50 @@
+/* Numberoodle Bubbly Logo Design */
+.logo-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    align-items: center;
+    text-decoration: none;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 900;
+}
+
+.logo-letter {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: white;
+    font-size: 20px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 0 rgba(0,0,0,0.1);
+    transform: translateY(0);
+    transition: transform 0.2s, filter 0.2s;
+}
+
+.logo-letter:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+}
+
+/* Colors based on game path colors */
+.letter-n { background: #4A90E2; } /* Blue */
+.letter-u { background: #50E3C2; } /* Mint */
+.letter-m { background: #F5A623; } /* Orange */
+.letter-b { background: #B8E986; } /* Lime */
+.letter-e { background: #D0021B; } /* Red */
+.letter-r { background: #9013FE; } /* Purple */
+
+.letter-o { background: #F8E71C; color: #333; } /* Yellow */
+.letter-d { background: #7ED321; } /* Green */
+.letter-l { background: #4A90E2; } /* Blue */
+
+@media (max-width: 480px) {
+    .logo-letter {
+        width: 28px;
+        height: 28px;
+        font-size: 16px;
+    }
+}

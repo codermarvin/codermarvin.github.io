@@ -2,249 +2,416 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Support - Numberoodle</title>
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Rubik', sans-serif;
-      background: #ffffff;
-      color: #111;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support | Numberoodle - Connect the Numbers</title>
+    <meta name="description"
+        content="Need help with Numberoodle? Check our FAQ or contact our support team. We're here to help you solve the puzzle.">
 
-    header {
-      text-align: center;
-      padding: 2rem 1rem 1rem;
-    }
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+    <link rel="shortcut icon" href="icons/favicon.ico">
 
-    h1 {
-      font-size: 2.2rem;
-      margin-bottom: 0.5rem;
-    }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
 
-    p {
-      max-width: 600px;
-      margin: 0 auto;
-      color: #444;
-    }
+    <style>
+        :root {
+            --bg-light: #F8F9FA;
+            --text-dark: #1A1A1A;
+            --text-muted: #666666;
+            --primary-blue: #1A73E8;
+            --primary-blue-hover: #1557B0;
+            --accent-glow: rgba(26, 115, 232, 0.15);
+            --card-white: #FFFFFF;
+            --max-width: 1200px;
+        }
 
-    main {
-      max-width: 700px;
-      margin: 2rem auto;
-      padding: 0;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    .faq-section,
-    .form-section {
-      padding: 0 1rem;
-    }
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
 
-    .faq-section h2 {
-      font-size: 1.4rem;
-      margin-bottom: 1rem;
-    }
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 0 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(248, 249, 250, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
 
-    details.faq-item {
-      border: 1px solid #ddd;
-      border-radius: 12px;
-      background-color: #f9f9f9;
-      margin-bottom: 0.75rem;
-      overflow: hidden;
-      transition: box-shadow 0.3s ease;
-    }
+        .nav-logo {
+            height: 100px;
+            width: auto;
+            margin: -20px 0;
+            transition: transform 0.2s;
+            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.1));
+        }
 
-    summary {
-      cursor: pointer;
-      font-weight: 500;
-      font-size: 1.05rem;
-      padding: 1rem;
-      list-style: none;
-    }
+        .nav-logo:hover {
+            transform: scale(1.05);
+        }
 
-    summary::-webkit-details-marker {
-      display: none;
-    }
+        .footer-logo-img {
+            height: 120px;
+            width: auto;
+            margin-bottom: 20px;
+        }
 
-    .faq-item[open] {
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
 
-    .faq-content {
-      max-height: 0;
-      overflow: hidden;
-      padding: 0 1rem;
-      color: #333;
-      font-size: 1rem;
-      transition: max-height 0.4s ease, padding 0.4s ease;
-    }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 600;
+            transition: color 0.3s;
+        }
 
-    .faq-item[open] .faq-content {
-      max-height: 250px;
-      padding: 0.5rem 1rem 1rem;
-    }
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-blue);
+        }
 
-    .faq-content p {
-      margin: 0;
-    }
+        .btn-download-nav {
+            background: var(--primary-blue);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 14px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(26, 115, 232, 0.3);
+        }
 
-    /* Form Section */
-    form {
-      display: flex;
-      flex-direction: column;
-    }
+        /* Content Area */
+        .content-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 150px 5% 100px;
+        }
 
-    label {
-      margin-top: 1.2rem;
-      font-size: 0.95rem;
-      font-weight: 500;
-    }
+        .page-title {
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 10px;
+            text-align: center;
+        }
 
-    input,
-    textarea {
-      width: 100%;
-      background: #f5f5f5;
-      border: 1px solid #ccc;
-      border-radius: 12px;
-      padding: 0.75rem;
-      font-size: 1rem;
-      margin-top: 0.3rem;
-      box-sizing: border-box;
-    }
+        .page-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 60px;
+            font-size: 18px;
+        }
 
-    textarea {
-      resize: vertical;
-    }
+        section {
+            margin-bottom: 80px;
+        }
 
-    button {
-      margin-top: 1.5rem;
-      background: #4aa1ff;
-      color: white;
-      border: none;
-      padding: 0.9rem 2rem;
-      font-size: 1rem;
-      border-radius: 999px;
-      cursor: pointer;
-      align-self: flex-start;
-    }
-  </style>
+        h2 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 30px;
+        }
+
+        /* FAQ Styles */
+        details {
+            background: var(--card-white);
+            border-radius: 20px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            overflow: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+        }
+
+        summary {
+            padding: 20px 25px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 18px;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        summary::after {
+            content: '+';
+            color: var(--primary-blue);
+            font-size: 24px;
+            transition: transform 0.3s;
+        }
+
+        details[open] summary::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-content {
+            padding: 0 25px 25px;
+            color: var(--text-muted);
+        }
+
+        /* Form Styles */
+        .contact-form-card {
+            background: var(--card-white);
+            padding: 40px;
+            border-radius: 32px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            background: #F1F3F5;
+            border: 2px solid transparent;
+            border-radius: 16px;
+            padding: 15px;
+            color: var(--text-dark);
+            font-family: inherit;
+            font-size: 16px;
+            transition: all 0.3s;
+            display: block;
+            resize: vertical;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            background: white;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 4px var(--accent-glow);
+        }
+
+        .btn-submit {
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
+            box-shadow: 0 4px 15px rgba(26, 115, 232, 0.3);
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            background: var(--primary-blue-hover);
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 5% 40px;
+            text-align: center;
+            background: white;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .footer-logo {
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 25px;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .copyright {
+            color: #AAA;
+            font-size: 14px;
+        }
+
+        @media (max-width: 968px) {
+            .nav-links {
+                display: none;
+            }
+
+            .content-container {
+                padding-top: 120px;
+            }
+
+            .page-title {
+                font-size: 36px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contact-form-card {
+                padding: 25px;
+            }
+
+            .page-title {
+                font-size: 32px;
+            }
+
+            nav {
+                height: auto;
+                padding: 5px 5%;
+            }
+
+            .nav-logo {
+                height: 70px;
+                transform: none;
+                margin: 0;
+            }
+
+            .nav-logo:hover {
+                transform: scale(1.05);
+            }
+
+            .footer-logo-img {
+                height: 80px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-  <header>
-    <h1>SUPPORT</h1>
-    <p>If you're experiencing issues with Numberoodle, fill out the form below and we’ll get back to you as soon as
-      possible.</p>
-  </header>
+    <nav>
+        <a href="index.html" class="logo-container">
+            <img src="logo.png" alt="Numberoodle Logo" class="nav-logo">
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html#hero">Home</a></li>
+            <li><a href="index.html#features">Features</a></li>
+            <li><a href="support.html" class="active">Support</a></li>
+            <li><a href="privacy.html">Privacy</a></li>
+        </ul>
+        <a href="index.html#hero" class="btn-download-nav">Download Now</a>
+    </nav>
 
-  <main>
-    <section class="faq-section">
-      <h2>Frequently Asked Questions</h2>
+    <main class="content-container">
+        <h1 class="page-title">Support</h1>
+        <p class="page-subtitle">Experiencing issues with Numberoodle? We're here to help you get back to the puzzle.
+        </p>
 
-      <!-- <details class="faq-item">
-        <summary>How do I reset my progress?</summary>
-        <div class="faq-content">
-          <p>Go to settings and tap "Reset Progress".</p>
-        </div>
-      </details> -->
+        <section>
+            <h2>Frequently Asked Questions</h2>
 
-      <!-- <details class="faq-item">
-        <summary>Why is my level not saving?</summary>
-        <div class="faq-content">
-          <p>Make sure you're logged in and connected to the internet.</p>
-        </div>
-      </details> -->
+            <details>
+                <summary>Can I play offline?</summary>
+                <div class="faq-content">
+                    <p>Yes! Previously played levels are available offline, so you can keep doodling even without a
+                        connection.</p>
+                </div>
+            </details>
 
-      <details class="faq-item">
-        <summary>Can I play offline?</summary>
-        <div class="faq-content">
-          <p>Yes! Previously played levels are available offline.</p>
-        </div>
-      </details>
+            <details>
+                <summary>How do I earn gems?</summary>
+                <div class="faq-content">
+                    <p>Complete daily missions, beat your best times, or unlock achievements to earn gems for hints and
+                        power-ups.</p>
+                </div>
+            </details>
 
-      <details class="faq-item">
-        <summary>How do I earn coins or gems?</summary>
-        <div class="faq-content">
-          <p>Complete missions, beat your best times, or watch optional ads.</p>
-        </div>
-      </details>
+            <details>
+                <summary>What are missions?</summary>
+                <div class="faq-content">
+                    <p>Missions are special challenges like "Reach level 20" or "Connect 100 lines" that reward you with
+                        extra gems.</p>
+                </div>
+            </details>
 
-      <details class="faq-item">
-        <summary>What are missions?</summary>
-        <div class="faq-content">
-          <p>Missions are challenges like "Reach level 20" or "Beat your best time 3x" that reward you with gems.</p>
-        </div>
-      </details>
+            <details>
+                <summary>I'm stuck on a level!</summary>
+                <div class="faq-content">
+                    <p>Don't worry! You can use a hint to see the next move, restart the level for a fresh look, or try
+                        a different difficulty mode.</p>
+                </div>
+            </details>
 
-      <details class="faq-item">
-        <summary>I’m stuck on a level. What can I do?</summary>
-        <div class="faq-content">
-          <p>You can use a hint, restart the level, or try later with a fresh mind!</p>
-        </div>
-      </details>
+            <details>
+                <summary>Will new levels be added?</summary>
+                <div class="faq-content">
+                    <p>Absolutely! We use a smart level generator to provide new challenges daily, ensuring you never
+                        run out of puzzles.</p>
+                </div>
+            </details>
+        </section>
 
-      <details class="faq-item">
-        <summary>What do the stars mean?</summary>
-        <div class="faq-content">
-          <p>Stars reflect your performance on each level. More stars = better speed and efficiency.</p>
-        </div>
-      </details>
+        <section>
+            <h2>Contact Us</h2>
+            <div class="contact-form-card">
+                <form action="mailto:numberoodlehelp@yahoo.com" method="POST" enctype="text/plain">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your name" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Your email address" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="message">How can we help?</label>
+                        <textarea id="message" name="message" rows="6" placeholder="Describe the issue you're facing..."
+                            required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">Submit Request</button>
+                </form>
+            </div>
+        </section>
+    </main>
 
-      <details class="faq-item">
-        <summary>How do I challenge a friend?</summary>
-        <div class="faq-content">
-          <p>Use the “Share Challenge” button to send a unique level link to your friend.</p>
-        </div>
-      </details>
+    <footer>
+        <img src="logo.png" alt="Numberoodle Logo" class="footer-logo-img">
+        <ul class="footer-links">
+            <li><a href="support.html">Support</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+        </ul>
+        <p class="copyright">© 2025 Marvin Aquino. All rights reserved.</p>
+    </footer>
 
-      <details class="faq-item">
-        <summary>Will new puzzles be added?</summary>
-        <div class="faq-content">
-          <p>Yes! The game uses AI to generate new levels daily, especially in Hard mode.</p>
-        </div>
-      </details>
-
-      <!-- <details class="faq-item">
-        <summary>How can I remove ads?</summary>
-        <div class="faq-content">
-          <p>Purchase the ad-free upgrade from the in-app store to remove all banner and rewarded ads.</p>
-        </div>
-      </details> -->
-
-      <!-- <details class="faq-item">
-        <summary>Is my data synced across devices?</summary>
-        <div class="faq-content">
-          <p>Yes, if you're logged in with the same account, your progress will sync automatically.</p>
-        </div>
-      </details> -->
-
-      <details class="faq-item">
-        <summary>Who can I contact for help?</summary>
-        <div class="faq-content">
-          <p>Use the contact form below or email us at <a
-              href="mailto:numberoodlehelp@yahoo.com">numberoodlehelp@yahoo.com</a>.</p>
-        </div>
-      </details>
-    </section>
-
-    <section class="form-section">
-      <form action="mailto:numberoodlehelp@yahoo.com" method="POST" enctype="text/plain">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" required />
-
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required />
-
-        <label for="message">What issue are you experiencing?</label>
-        <textarea id="message" name="message" rows="6" required></textarea>
-
-        <button type="submit">Submit</button>
-      </form>
-    </section>
-  </main>
-
+    <script>lucide.createIcons();</script>
 </body>
 
 </html>
