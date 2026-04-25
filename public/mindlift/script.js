@@ -3,7 +3,7 @@ const MOODS = {
         name: 'Stressed',
         class: 'mood-stressed',
         energy: 'High / Erratic',
-        suggestions: ['Take a 30-sec breath', 'Listen to Lo-Fi beats', 'Step away from screens'],
+        suggestions: ['Slow deep breaths', 'Listen to Lo-Fi beats', 'Step away from screens'],
         quotes: ['"This too shall pass."', '"Breathe. It is just a bad day, not a bad life."', '"Calm is a superpower."'],
         words: ['Breathe', 'Release', 'Quiet', 'Stillness']
     },
