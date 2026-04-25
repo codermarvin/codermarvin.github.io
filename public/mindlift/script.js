@@ -225,13 +225,17 @@ class MindLiftApp {
         const x = Math.random() * (window.innerWidth - size);
         const y = window.innerHeight + 100;
         
+        const isBreath = content.toLowerCase().includes('breath');
+        const vy_base = isBreath ? -0.2 : -0.8; // Extremely slow for breath bubbles
+        
         const bubbleObj = {
             el: bubble,
             x: x,
             y: y,
-            vx: (Math.random() - 0.5) * 2,
-            vy: -0.8 - Math.random() * 1.5, // Re-balanced upward drift
+            vx: (Math.random() - 0.5) * (isBreath ? 0.5 : 2),
+            vy: vy_base - Math.random() * (isBreath ? 0.2 : 1.5),
             size: size,
+            isBreath: isBreath,
             isDragging: false,
             lastX: x,
             lastY: y
@@ -305,8 +309,11 @@ class MindLiftApp {
                     b.y += b.vy;
 
                     // Buoyancy (constant upward force) - Re-balanced
-                    b.vy -= 0.015; 
-                    if (b.vy < -2.2) b.vy = -2.2; // Balanced terminal velocity
+                    const gravityFactor = b.isBreath ? 0.003 : 0.015;
+                    b.vy -= gravityFactor; 
+                    
+                    const terminal = b.isBreath ? -0.5 : -2.2;
+                    if (b.vy < terminal) b.vy = terminal;
 
                     // Air resistance / Friction
                     b.vx *= 0.99;
@@ -339,10 +346,26 @@ class MindLiftApp {
 
     showSuggestion(content, isSquare) {
         this.lastOpenedContent = { content, isSquare };
+        const isBreath = content.toLowerCase().includes('breath');
+        
         this.suggestionContent.innerHTML = `
             <h3 style="color: var(--accent-primary); margin-bottom: 0.5rem;">${isSquare ? 'Reflection' : 'MindLift Hint'}</h3>
             <div style="font-size: 1.6rem; font-weight: 600; margin: 1.5rem 0; line-height: 1.2;">${content}</div>
+            ${isBreath ? '<button id="breath-cta">Start Exercise</button>' : ''}
         `;
+        
+        if (isBreath) {
+            const btn = document.getElementById('breath-cta');
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (btn.textContent === 'Start Exercise') {
+                    btn.textContent = 'Stop';
+                    this.suggestionCard.classList.add('breathing-active');
+                } else {
+                    this.hideSuggestion();
+                }
+            });
+        }
         
         this.suggestionCard.classList.remove('is-circle', 'is-square', 'popping');
         this.suggestionCard.classList.add(isSquare ? 'is-square' : 'is-circle');
@@ -356,7 +379,7 @@ class MindLiftApp {
     }
 
     hideSuggestion() {
-        this.suggestionCard.classList.remove('active');
+        this.suggestionCard.classList.remove('active', 'breathing-active');
         
         // Return to screen as a bubble
         const { content, isSquare } = this.lastOpenedContent;
