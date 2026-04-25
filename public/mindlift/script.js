@@ -217,16 +217,18 @@ class MindLiftApp {
         bubble.style.width = bubble.style.height = `${size}px`;
         bubble.textContent = content;
         
-        // Remove left/top from style as we use transform
         bubble.style.position = 'absolute';
         bubble.style.left = '0';
         bubble.style.top = '0';
+        bubble.style.margin = '0';
+        bubble.style.pointerEvents = 'auto';
+        bubble.style.transition = 'none'; // CRITICAL: prevent CSS interference
         
         const x = Math.random() * (window.innerWidth - size);
         const y = window.innerHeight + 100;
         
         const isBreath = content.toLowerCase().includes('breath');
-        const vy_base = isBreath ? -0.2 : -0.8; // Extremely slow for breath bubbles
+        const vy_base = isBreath ? -0.2 : -0.8;
         
         const bubbleObj = {
             el: bubble,
@@ -241,15 +243,16 @@ class MindLiftApp {
             lastY: y
         };
 
-        // Set initial transform immediately
+        // Set initial transform immediately and forcefully
         bubble.style.transform = `translate3d(${x}px, ${y}px, 0)`;
 
-        bubble.addEventListener('click', () => {
+        bubble.addEventListener('click', (e) => {
+            e.stopPropagation();
             const isSquare = type >= 0.7;
             this.showSuggestion(content, isSquare);
             
             // Remove the bubble from physics so it "becomes" the card
-            bubble.remove();
+            if (bubble.parentNode) bubble.parentNode.removeChild(bubble);
             this.bubbles = this.bubbles.filter(b => b.el !== bubble);
         });
 
@@ -394,23 +397,25 @@ class MindLiftApp {
     }
 
     recreateBubbleFromCard(content, isSquare) {
-        // Find current card position or just use center
+        // Return to where the card was roughly
         const x = window.innerWidth / 2 - 100;
         const y = window.innerHeight / 2 - 100;
         
         const bubble = document.createElement('div');
         bubble.className = 'bubble';
-        if (isSquare) {
-            bubble.style.borderRadius = '24px';
-        }
+        if (isSquare) bubble.style.borderRadius = '24px';
         
         const isBreath = content.toLowerCase().includes('breath');
         const size = isSquare ? 220 : 180;
         bubble.style.width = bubble.style.height = `${size}px`;
         bubble.textContent = content;
+        
         bubble.style.position = 'absolute';
         bubble.style.left = '0';
         bubble.style.top = '0';
+        bubble.style.margin = '0';
+        bubble.style.pointerEvents = 'auto';
+        bubble.style.transition = 'none';
         
         if (isBreath) bubble.classList.add('pulse');
 
@@ -430,9 +435,10 @@ class MindLiftApp {
         // Set initial transform immediately
         bubble.style.transform = `translate3d(${x}px, ${y}px, 0)`;
 
-        bubble.addEventListener('click', () => {
+        bubble.addEventListener('click', (e) => {
+            e.stopPropagation();
             this.showSuggestion(content, isSquare);
-            bubble.remove();
+            if (bubble.parentNode) bubble.parentNode.removeChild(bubble);
             this.bubbles = this.bubbles.filter(b => b.el !== bubble);
         });
 
