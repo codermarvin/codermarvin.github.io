@@ -241,6 +241,9 @@ class MindLiftApp {
             lastY: y
         };
 
+        // Set initial transform immediately
+        bubble.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+
         bubble.addEventListener('click', () => {
             const isSquare = type >= 0.7;
             this.showSuggestion(content, isSquare);
@@ -401,24 +404,31 @@ class MindLiftApp {
             bubble.style.borderRadius = '24px';
         }
         
+        const isBreath = content.toLowerCase().includes('breath');
         const size = isSquare ? 220 : 180;
         bubble.style.width = bubble.style.height = `${size}px`;
         bubble.textContent = content;
         bubble.style.position = 'absolute';
         bubble.style.left = '0';
         bubble.style.top = '0';
+        
+        if (isBreath) bubble.classList.add('pulse');
 
         const bubbleObj = {
             el: bubble,
             x: x,
             y: y,
-            vx: (Math.random() - 0.5) * 2,
-            vy: -2, // Give it a little boost up
+            vx: (Math.random() - 0.5) * (isBreath ? 0.5 : 2),
+            vy: isBreath ? -0.5 : -2, 
             size: size,
+            isBreath: isBreath,
             isDragging: false,
             lastX: x,
             lastY: y
         };
+
+        // Set initial transform immediately
+        bubble.style.transform = `translate3d(${x}px, ${y}px, 0)`;
 
         bubble.addEventListener('click', () => {
             this.showSuggestion(content, isSquare);
