@@ -95,7 +95,7 @@ class MindLiftApp {
     init() {
         this.liftOffBtn.addEventListener('click', () => this.analyzeMood());
         this.resetBtn.addEventListener('click', () => this.reset());
-        this.closeSuggestion.addEventListener('click', () => this.hideSuggestion());
+        this.suggestionCard.addEventListener('click', () => this.hideSuggestion());
         
         this.moodInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') this.analyzeMood();
@@ -238,8 +238,12 @@ class MindLiftApp {
         };
 
         bubble.addEventListener('click', () => {
-            const isSquare = type >= 0.7; // Quotes are squares
+            const isSquare = type >= 0.7;
             this.showSuggestion(content, isSquare);
+            
+            // Remove the bubble from physics so it "becomes" the card
+            bubble.remove();
+            this.bubbles = this.bubbles.filter(b => b.el !== bubble);
         });
 
         this.makeDraggable(bubbleObj);
@@ -334,10 +338,10 @@ class MindLiftApp {
     }
 
     showSuggestion(content, isSquare) {
+        this.lastOpenedContent = { content, isSquare };
         this.suggestionContent.innerHTML = `
             <h3 style="color: var(--accent-primary); margin-bottom: 0.5rem;">${isSquare ? 'Reflection' : 'MindLift Hint'}</h3>
             <div style="font-size: 1.6rem; font-weight: 600; margin: 1.5rem 0; line-height: 1.2;">${content}</div>
-            <p style="color: var(--text-muted); font-size: 0.9rem;">Tap to release</p>
         `;
         
         this.suggestionCard.classList.remove('is-circle', 'is-square', 'popping');
@@ -352,13 +356,56 @@ class MindLiftApp {
     }
 
     hideSuggestion() {
-        this.suggestionCard.classList.add('popping');
         this.suggestionCard.classList.remove('active');
         
+        // Return to screen as a bubble
+        const { content, isSquare } = this.lastOpenedContent;
+        this.recreateBubbleFromCard(content, isSquare);
+
         setTimeout(() => {
             this.suggestionOverlay.style.display = 'none';
-            this.suggestionCard.classList.remove('popping');
-        }, 400);
+        }, 500);
+    }
+
+    recreateBubbleFromCard(content, isSquare) {
+        // Find current card position or just use center
+        const x = window.innerWidth / 2 - 100;
+        const y = window.innerHeight / 2 - 100;
+        
+        const bubble = document.createElement('div');
+        bubble.className = 'bubble';
+        if (isSquare) {
+            bubble.style.borderRadius = '24px';
+        }
+        
+        const size = isSquare ? 220 : 180;
+        bubble.style.width = bubble.style.height = `${size}px`;
+        bubble.textContent = content;
+        bubble.style.position = 'absolute';
+        bubble.style.left = '0';
+        bubble.style.top = '0';
+
+        const bubbleObj = {
+            el: bubble,
+            x: x,
+            y: y,
+            vx: (Math.random() - 0.5) * 2,
+            vy: -2, // Give it a little boost up
+            size: size,
+            isDragging: false,
+            lastX: x,
+            lastY: y
+        };
+
+        bubble.addEventListener('click', () => {
+            this.showSuggestion(content, isSquare);
+            bubble.remove();
+            this.bubbles = this.bubbles.filter(b => b.el !== bubble);
+        });
+
+        this.makeDraggable(bubbleObj);
+        this.canvas.appendChild(bubble);
+        this.bubbles.push(bubbleObj);
     }
 
     getRandom(array) {
