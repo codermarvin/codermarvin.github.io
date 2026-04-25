@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindLift | AI Mood Anti-Gravity Experience</title>
+    <meta name="description" content="Experience a floating, anti-gravity mental lift based on your current mood. AI-powered wellness and relaxation.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app-container" class="mood-neutral">
+        <div id="background-gradient"></div>
+        <div id="anti-gravity-canvas"></div>
+
+        <header>
+            <div class="logo">Mind<span>Lift</span></div>
+        </header>
+
+        <main>
+            <section id="input-section" class="visible">
+                <h1>How are you feeling right now?</h1>
+                <p class="subtitle">Enter your mood to begin your anti-gravity journey.</p>
+                
+                <div class="input-wrapper">
+                    <input type="text" id="mood-input" placeholder="e.g., I feel a bit overwhelmed but hopeful..." autocomplete="off">
+                    <button id="voice-btn" title="Speak your mood">🎤</button>
+                    <button id="lift-off-btn">Lift Off</button>
+                </div>
+                
+                <div class="quick-tags">
+                    <button class="tag">Stressed</button>
+                    <button class="tag">Bored</button>
+                    <button class="tag">Happy</button>
+                    <button class="tag">Lost</button>
+                </div>
+            </section>
+
+            <section id="experience-section">
+                <div id="mood-display">
+                    <h2 id="detected-mood">Reflecting...</h2>
+                    <p id="energy-level"></p>
+                </div>
+                
+                <div id="controls">
+                    <button id="reset-btn">Change Mood</button>
+                </div>
+            </section>
+        </main>
+
+        <div id="suggestion-overlay">
+            <div class="suggestion-card">
+                <div class="close-suggestion">&times;</div>
+                <div id="suggestion-content"></div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 MindLift AI. Elevate your state.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
