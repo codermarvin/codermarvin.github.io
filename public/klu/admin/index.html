@@ -175,7 +175,7 @@ main {
     backdrop-filter: blur(var(--glass-blur));
     border: 1px solid var(--border-color);
     border-radius: 20px;
-    overflow: hidden;
+    overflow-x: auto;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
     margin-bottom: 2rem;
 }
@@ -666,9 +666,32 @@ footer {
         font-size: 2rem;
     }
 
+    .controls {
+        flex-direction: column;
+    }
+
+    .filter-bar {
+        flex-direction: column;
+    }
+
+    .refresh-bar {
+        justify-content: center;
+    }
+
     .stats-table th:nth-child(4),
-    .stats-table td:nth-child(4) {
+    .stats-table td:nth-child(4),
+    .stats-table th:nth-child(6),
+    .stats-table td:nth-child(6) {
         display: none;
+    }
+
+    #summary {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .login-box {
+        padding: 1.5rem;
     }
 }
 
