@@ -500,6 +500,7 @@ main {
     cursor: pointer;
     user-select: none;
     transition: background 0.2s ease, color 0.2s ease;
+    white-space: nowrap;
 }
 
 .stats-table th:hover {
@@ -543,6 +544,7 @@ main {
     padding: 1.25rem 1.5rem;
     border-bottom: 1px solid var(--border-color);
     font-size: 0.95rem;
+    white-space: nowrap;
 }
 
 .stats-row {
@@ -678,13 +680,6 @@ footer {
         justify-content: center;
     }
 
-    .stats-table th:nth-child(4),
-    .stats-table td:nth-child(4),
-    .stats-table th:nth-child(6),
-    .stats-table td:nth-child(6) {
-        display: none;
-    }
-
     #summary {
         flex-direction: column;
         gap: 1rem;
@@ -746,7 +741,10 @@ footer {
 
 .login-overlay {
     position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: var(--bg-color);
     display: flex;
     justify-content: center;
@@ -1126,8 +1124,8 @@ footer {
                         const totalPlays = data.reduce((acc, curr) => acc + curr.totalPlayed, 0);
                         
                         summaryContainer.innerHTML = 
-                            '<div class="summary-item"><span class="summary-val">' + totalUnique + '</span><span class="summary-label">TOTAL UNIQUE PUZZLES</span></div>' +
-                            '<div class="summary-item"><span class="summary-val">' + puzzlesPlayed + '</span><span class="summary-label">TOTAL PUZZLES PLAYED</span></div>' +
+                            '<div class="summary-item"><span class="summary-val">' + totalUnique.toLocaleString() + '</span><span class="summary-label">TOTAL UNIQUE PUZZLES</span></div>' +
+                            '<div class="summary-item"><span class="summary-val">' + puzzlesPlayed.toLocaleString() + '</span><span class="summary-label">TOTAL PUZZLES PLAYED</span></div>' +
                             '<div class="summary-item"><span class="summary-val">' + totalPlays.toLocaleString() + '</span><span class="summary-label">TOTAL AGGREGATE PLAYS</span></div>';
                     };
 
