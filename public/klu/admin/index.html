@@ -719,12 +719,104 @@ footer {
 
 .scroll-btn.up svg {
     transform: rotate(180deg);
+}
+
+.login-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.login-box {
+    background: var(--card-bg);
+    padding: 3rem;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    text-align: center;
+    backdrop-filter: blur(var(--glass-blur));
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    max-width: 400px;
+    width: 90%;
+}
+
+.login-box h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #818cf8 0%, #c084fc 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.login-box p {
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+}
+
+.login-box input {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    color: #fff;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.login-box input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+.login-box button {
+    width: 100%;
+    padding: 1rem;
+    background: var(--accent-color);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.login-box button:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+}
+
+.login-error {
+    color: #ef4444;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    display: none;
 }</style>
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-functions-compat.js"></script>
     <!-- Scripts are injected by dashboard.js -->
 </head>
 
 <body>
-    <div class="container">
+    <div id="loginOverlay" class="login-overlay">
+        <div class="login-box">
+            <h2>Admin Login</h2>
+            <p>Sign in to access the dashboard.</p>
+            <input type="email" id="loginEmail" placeholder="Email address">
+            <input type="password" id="loginPassword" placeholder="Password">
+            <button id="loginBtn">Sign In</button>
+            <div id="loginError" class="login-error">Invalid credentials</div>
+        </div>
+    </div>
+    <div class="container" id="mainContainer" style="display: none;">
         <header>
             <h1>KLU Dashboard</h1>
             
@@ -889,11 +981,27 @@ footer {
                     const useEmulator = urlParams.has('emulator');
                     const REGION = 'us-central1';
                     const PROJECT_ID = 'five-clues-prod';
-                    const EMULATOR_BASE = 'http://localhost:5001/' + PROJECT_ID + '/' + REGION;
-                    const PROD_BASE = 'https://' + REGION + '-' + PROJECT_ID + '.cloudfunctions.net';
-                    const BASE_URL = useEmulator ? EMULATOR_BASE : PROD_BASE;
+                    
+                    if (!firebase.apps.length) {
+                        firebase.initializeApp({
+                            apiKey: "AIzaSyD4VVp6FgtIfJipgREuQpIT3zgrsqSVrYo",
+                            authDomain: PROJECT_ID + ".firebaseapp.com",
+                            projectId: PROJECT_ID,
+                            storageBucket: PROJECT_ID + ".firebasestorage.app",
+                            messagingSenderId: "1043966488795",
+                            appId: "1:1043966488795:android:45b69d0a41f42888c21cfe"
+                        });
+                    }
+                    
+                    const auth = firebase.auth();
+                    const cloudFunctions = firebase.app().functions(REGION);
+                    
+                    if (useEmulator) {
+                        auth.useEmulator('http://localhost:9099');
+                        cloudFunctions.useEmulator('localhost', 5001);
+                    }
 
-                    console.log('Dashboard Mode:', (useEmulator ? 'EMULATOR' : 'PRODUCTION'), 'Base URL:', BASE_URL);
+                    console.log('Dashboard Mode:', (useEmulator ? 'EMULATOR' : 'PRODUCTION'));
 
                     window.switchTab = (tab) => {
                         console.log('Tab switch:', tab);
@@ -920,19 +1028,16 @@ footer {
                         selectElement.style.opacity = '0.5';
                         
                         try {
-                            const response = await fetch(BASE_URL + '/updatePuzzleDifficulty', {
-                                method: 'POST',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify({ data: { answer, difficulty: parseInt(newDifficulty) } })
-                            });
-                            const result = await response.json();
-                            if (result.result && result.result.success) {
+                            const updateDiff = cloudFunctions.httpsCallable('updatePuzzleDifficulty');
+                            const result = await updateDiff({ answer, difficulty: parseInt(newDifficulty) });
+                            
+                            if (result.data && result.data.success) {
                                 selectElement.dataset.original = newDifficulty;
                                 showStatus('Updated ' + answer + ' to ' + newDifficulty, 'success');
                                 const item = stats.find(s => s.answer === answer);
                                 if (item) item.difficulty = parseInt(newDifficulty);
                             } else {
-                                throw new Error((result.error && result.error.message) || 'Update failed');
+                                throw new Error('Update failed');
                             }
                         } catch (error) {
                             console.error('❌ Error updating difficulty:', error);
@@ -947,14 +1052,10 @@ footer {
                     const fetchLiveStats = async () => {
                         if (refreshBtn) refreshBtn.classList.add('spinning');
                         try {
-                            const response = await fetch(BASE_URL + '/getPuzzleStats', {
-                                method: 'POST',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify({ data: {} })
-                            });
-                            const result = await response.json();
-                            if (result.result && result.result.stats) {
-                                stats = result.result.stats;
+                            const getStats = cloudFunctions.httpsCallable('getPuzzleStats');
+                            const result = await getStats({});
+                            if (result.data && result.data.stats) {
+                                stats = result.data.stats;
                                 populateCategories();
                                 render();
                             }
@@ -1140,18 +1241,10 @@ footer {
                         batchResults.innerHTML = '<div class="loader" style="padding:1rem"><div class="spinner"></div><p>Batch starting...</p></div>';
                         
                         try {
-                            const response = await fetch(BASE_URL + '/generateEndlessBatch', {
-                                method: 'POST',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify({ data: { count, generator, words, includedCategories } })
-                            });
+                            const generateEndlessBatch = cloudFunctions.httpsCallable('generateEndlessBatch');
+                            const result = await generateEndlessBatch({ count, generator, words, includedCategories });
                             
-                            if (!response.ok) {
-                                throw new Error('HTTP Error: ' + response.status + ' ' + response.statusText);
-                            }
-
-                            const result = await response.json();
-                            const { puzzles, logs } = result.result || {};
+                            const { puzzles, logs } = result.data || {};
                             
                             let html = '<div style="background:rgba(255,255,255,0.03); border-radius:12px; padding:1rem; margin-top:1rem;">';
                             (logs || []).forEach(log => {
@@ -1235,12 +1328,57 @@ footer {
                     setInterval(handleScroll, 1000);
 
                     console.log('🚀 Initializing UI components...');
-                    if (stats.length === 0) {
-                        fetchLiveStats();
-                    } else {
-                        populateCategories();
-                        render();
-                    }
+                    
+                    const loginOverlay = document.getElementById('loginOverlay');
+                    const mainContainer = document.getElementById('mainContainer');
+                    const loginEmail = document.getElementById('loginEmail');
+                    const loginPassword = document.getElementById('loginPassword');
+                    const loginBtn = document.getElementById('loginBtn');
+                    const loginError = document.getElementById('loginError');
+
+                    const initDashboard = () => {
+                        if (stats.length === 0) {
+                            fetchLiveStats();
+                        } else {
+                            populateCategories();
+                            render();
+                        }
+                    };
+
+                    const handleLogin = async () => {
+                        try {
+                            loginBtn.disabled = true;
+                            loginBtn.textContent = 'Signing In...';
+                            loginError.style.display = 'none';
+                            
+                            await auth.signInWithEmailAndPassword(loginEmail.value, loginPassword.value);
+                            // onAuthStateChanged will handle the rest
+                        } catch (error) {
+                            loginError.textContent = error.message;
+                            loginError.style.display = 'block';
+                            loginBtn.disabled = false;
+                            loginBtn.textContent = 'Sign In';
+                        }
+                    };
+
+                    loginBtn.addEventListener('click', handleLogin);
+                    loginPassword.addEventListener('keypress', (e) => {
+                        if (e.key === 'Enter') handleLogin();
+                    });
+
+                    auth.onAuthStateChanged((user) => {
+                        if (user) {
+                            loginOverlay.style.display = 'none';
+                            mainContainer.style.display = 'block';
+                            initDashboard();
+                        } else {
+                            loginOverlay.style.display = 'flex';
+                            mainContainer.style.display = 'none';
+                            loginBtn.disabled = false;
+                            loginBtn.textContent = 'Sign In';
+                        }
+                    });
+
                     console.log('✨ Initialization Complete.');
                 } catch (initError) {
                     console.error('❌ Initialization Failure:', initError);
