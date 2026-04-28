@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | KLU - Five Clues, One Word</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>:root {
+    --bg-color: #0d0e12;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --accent-color: #6366f1;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --glass-blur: 16px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    line-height: 1.6;
+    background-image: radial-gradient(circle at 50% -20%, #1e1b4b 0%, var(--bg-color) 80%);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+}
+
+header {
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #818cf8 0%, #c084fc 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+header p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 1rem;
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.search-bar {
+    position: relative;
+    flex: 2;
+}
+
+.filter-bar {
+    flex: 2;
+    display: flex;
+    gap: 0.75rem;
+}
+
+.filter-bar select {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    backdrop-filter: blur(var(--glass-blur));
+    transition: all 0.3s ease;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1.2rem;
+}
+
+.filter-bar select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 1rem 1.5rem 1rem 3.5rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    backdrop-filter: blur(var(--glass-blur));
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.search-bar input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+}
+
+.refresh-bar {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.refresh-bar button {
+    height: 100%;
+    padding: 0.8rem 1.25rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    backdrop-filter: blur(var(--glass-blur));
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.refresh-bar button:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+.refresh-bar button.spinning svg {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.search-bar svg {
+    position: absolute;
+    left: 1.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+}
+
+main {
+    background: var(--card-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    margin-bottom: 2rem;
+}
+
+.nav-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.nav-tab {
+    padding: 0.75rem 1.5rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.nav-tab.active {
+    background: var(--accent-color);
+    color: #fff;
+    border-color: var(--accent-color);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.view-section {
+    display: none;
+}
+
+.view-section.active {
+    display: block;
+}
+
+.generator-container {
+    padding: 2.5rem;
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.input-group {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.input-group input {
+    flex: 1;
+    padding: 1rem 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    color: #fff;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.btn-generate {
+    padding: 0 2rem;
+    background: var(--accent-color);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-generate:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+}
+
+.btn-generate:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.gen-row {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.gen-group {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.gen-group label {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.gen-input,
+.gen-select {
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.gen-input:focus,
+.gen-select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.gen-input {
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.gen-select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1.1rem;
+    padding-right: 2.5rem;
+}
+
+.gen-textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 1rem 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    color: #fff;
+    font-size: 1.1rem;
+    resize: none;
+    overflow: hidden;
+    line-height: 1.6;
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+.gen-textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.review-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-top: 1rem;
+    animation: slideUp 0.4s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.review-word {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    letter-spacing: 0.05em;
+}
+
+.review-category {
+    font-size: 0.8rem;
+    background: rgba(99, 102, 241, 0.1);
+    color: #818cf8;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    text-transform: uppercase;
+}
+
+.clue-item {
+    background: rgba(255, 255, 255, 0.02);
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 0.75rem;
+    border-left: 3px solid var(--accent-color);
+}
+
+.clue-label {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
+}
+
+.clue-text {
+    font-size: 1rem;
+    color: #fff;
+}
+
+.explanation-box {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: rgba(251, 191, 36, 0.05);
+    border-radius: 10px;
+    border-left: 3px solid #fbbf24;
+}
+
+.explanation-title {
+    font-size: 0.75rem;
+    color: #fbbf24;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
+}
+
+.explanation-text {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+.actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.btn-secondary {
+    padding: 0.75rem 1.5rem;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-save {
+    padding: 0.75rem 2rem;
+    background: #10b981;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-save:hover {
+    background: #059669;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.status-msg {
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+    padding: 0.75rem;
+    border-radius: 10px;
+    display: none;
+}
+
+.status-msg.success {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+    display: block;
+}
+
+.status-msg.error {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    display: block;
+}
+
+.stats-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.stats-table th {
+    text-align: left;
+    padding: 1.25rem 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text-secondary);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--border-color);
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.stats-table th:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+}
+
+.stats-table th::after {
+    content: '⏷';
+    margin-left: 0.5rem;
+    opacity: 0.15;
+    font-size: 0.6rem;
+    display: inline-block;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.stats-table th.sort-asc::after {
+    content: '⏶';
+    opacity: 1;
+    color: var(--accent-color);
+}
+
+.stats-table th.sort-desc::after {
+    content: '⏷';
+    opacity: 1;
+    color: var(--accent-color);
+}
+
+.sort-rank {
+    font-size: 0.65rem;
+    opacity: 0.4;
+    margin-left: 0.4rem;
+    vertical-align: middle;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.1rem 0.3rem;
+    border-radius: 4px;
+    font-weight: 700;
+}
+
+.stats-table td {
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.95rem;
+}
+
+.stats-row {
+    transition: background 0.2s ease;
+}
+
+.stats-row:hover {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.answer-cell {
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.025em;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.badge-db {
+    background: rgba(99, 102, 241, 0.15);
+    color: #818cf8;
+}
+
+.badge-played {
+    background: rgba(168, 85, 247, 0.15);
+    color: #a855f7;
+}
+
+.last-played {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+.loader {
+    padding: 4rem;
+    text-align: center;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--border-color);
+    border-top-color: var(--accent-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1.5rem;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+footer {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+#summary {
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.summary-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.summary-val {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.summary-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.diff-select {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--text-primary);
+    padding: 0.25rem 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    appearance: none;
+    text-align: center;
+    width: 45px;
+}
+
+.diff-select:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--accent-color);
+}
+
+.diff-select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+@media (max-width: 640px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    .stats-table th:nth-child(4),
+    .stats-table td:nth-child(4) {
+        display: none;
+    }
+}
+
+.scroll-btn {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 3.5rem;
+    height: 3.5rem;
+    background: var(--accent-color);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+}
+
+.scroll-btn.visible {
+    opacity: 0.9;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.scroll-btn:hover {
+    transform: translateY(-5px) scale(1.05);
+    filter: brightness(1.1);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.2);
+    opacity: 1;
+}
+
+.scroll-btn:active {
+    transform: translateY(-2px) scale(0.95);
+}
+
+.scroll-btn svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.scroll-btn.up svg {
+    transform: rotate(180deg);
+}</style>
+    <!-- Scripts are injected by dashboard.js -->
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>KLU Dashboard</h1>
+            
+            <p>Advanced Puzzle Management & Generation</p>
+            <div class="nav-tabs">
+                <div class="nav-tab active" id="statsTab" onclick="switchTab('stats')">Puzzle Statistics</div>
+                <div class="nav-tab" id="genTab" onclick="switchTab('gen')">AI Generator</div>
+            </div>
+        
+            <div class="controls">
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Search by answer..." autocomplete="off">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </div>
+                <div class="filter-bar">
+                    <select id="categoryFilter">
+                        <option value="all">All Categories</option>
+                    </select>
+                    <select id="difficultyFilter">
+                        <option value="all">All Difficulties</option>
+                        <option value="1">1 - Easy</option>
+                        <option value="2">2 - Medium</option>
+                        <option value="3">3 - Hard</option>
+                        <option value="4">4 - Expert</option>
+                        <option value="5">5 - Master</option>
+                    </select>
+                </div>
+                <div class="refresh-bar">
+                    <button id="resetBtn" title="Reset Filters">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 2v6h6"></path>
+                            <path d="M3 13a9 9 0 1 0 3-7.7L3 8"></path>
+                        </svg>
+                    </button>
+                    <button id="refreshBtn" title="Refresh Data">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 2v6h-6"></path>
+                            <path d="M3 12a9 9 0 0 1 15-6.7L21 8"></path>
+                            <path d="M3 22v-6h6"></path>
+                            <path d="M21 12a9 9 0 0 1-15 6.7L3 16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        
+        <main id="statsView" class="view-section active">
+            <div id="statsContainer">
+                <div class="loader">
+                    <div class="spinner"></div>
+                    <p>Fetching statistics...</p>
+                </div>
+            </div>
+        </main>
+        <main id="genView" class="view-section">
+            <div class="generator-container" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                <div class="gen-row">
+                    <div class="gen-group">
+                        <label for="batchCount">Count:</label>
+                        <input type="number" id="batchCount" class="gen-input" value="5" min="1" max="20" style="width: 75px;">
+                    </div>
+                    <div class="gen-group" style="flex: 1.5; min-width: 240px;">
+                        <label for="batchCategory">Category:</label>
+                        <select id="batchCategory" class="gen-select" style="flex: 1;">
+                            <option value="random">Random Theme</option>
+                        </select>
+                    </div>
+                    <div class="gen-group" style="flex: 1; min-width: 160px;">
+                        <label for="batchGenerator">AI:</label>
+                        <select id="batchGenerator" class="gen-select" style="flex: 1;">
+                            <option value="gemini">Gemini</option>
+                            <option value="deepseek">DeepSeek</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                    <label for="batchWords" style="color: var(--text-secondary); font-size: 0.9rem; font-weight: 500; display: flex; justify-content: space-between; align-items: center;">
+                        <span>Specific Words (Optional):</span>
+                        <span style="font-size: 0.75rem; opacity: 0.6; font-weight: 400;">Comma-separated list (e.g. MOON, STAR, GALAXY)</span>
+                    </label>
+                    <textarea id="batchWords" class="gen-textarea" placeholder="Leave empty for random themes..."></textarea>
+                </div>
+                <button id="batchBtn" class="btn-generate" style="background: rgba(99, 102, 241, 0.15); color: #818cf8; border: 1px solid rgba(99, 102, 241, 0.3); padding: 1rem 2.5rem; width: 100%; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">Run Batch Generation</button>
+                
+                <div style="margin-top: 0.5rem;">
+                    <p style="color: var(--text-secondary); font-size: 0.8rem; font-style: italic; opacity: 0.7">Note: Generates unique puzzles and saves them directly to the database. Duplicates are skipped automatically.</p>
+                    <div id="batchResults" style="margin-top: 1.5rem;"></div>
+                </div>
+                <div id="statusMsg" class="status-msg"></div>
+            </div>
+        </main>
+    
+
+        <footer>
+            <div id="summary"></div>
+            <p>&copy; 2026 KLU. All rights reserved.</p>
+        </footer>
+    </div>
+
+    
+        <script>
+            (function() {
+                console.log('🚀 Dashboard Initialization Starting...');
+                
+                // Wrap in global error handler
+                window.onerror = function(msg, url, lineNo, columnNo, error) {
+                    console.error('❌ GLOBAL ERROR:', msg, 'at', lineNo + ':' + columnNo);
+                    alert('CRITICAL DASHBOARD ERROR: ' + msg + '\\nCheck console for details.');
+                    return false;
+                };
+
+                try {
+                    console.log('📦 Parsing stats data...');
+                    const statsData = [];
+                    console.log('✅ Stats data loaded:', statsData ? statsData.length : 0, 'records');
+                    
+                    if (!statsData || !Array.isArray(statsData)) {
+                        console.error('❌ Stats data is invalid:', statsData);
+                        return;
+                    }
+
+                    let stats = statsData;
+                    
+                    console.log('🔍 Identifying DOM elements...');
+                    const statsContainer = document.getElementById('statsContainer');
+                    const summaryContainer = document.getElementById('summary');
+                    const searchInput = document.getElementById('searchInput');
+                    const categoryFilter = document.getElementById('categoryFilter');
+                    const difficultyFilter = document.getElementById('difficultyFilter');
+                    const refreshBtn = document.getElementById('refreshBtn');
+                    const resetBtn = document.getElementById('resetBtn');
+                    const batchBtn = document.getElementById('batchBtn');
+                    const batchCountInput = document.getElementById('batchCount');
+                    const batchCategory = document.getElementById('batchCategory');
+                    const batchGenerator = document.getElementById('batchGenerator');
+                    const batchWordsInput = document.getElementById('batchWords');
+                    const batchResults = document.getElementById('batchResults');
+                    const statusMsg = document.getElementById('statusMsg');
+
+                    const requiredElements = {
+                        statsContainer, summaryContainer, searchInput, 
+                        categoryFilter, difficultyFilter, refreshBtn, resetBtn, batchBtn, 
+                        batchCountInput, batchCategory, batchGenerator, batchWordsInput, batchResults, statusMsg
+                    };
+
+                    Object.entries(requiredElements).forEach(([name, el]) => {
+                        if (!el) console.warn('⚠️ Missing element:', name);
+                    });
+
+                    let currentSort = [{ column: 'answer', direction: 'asc' }];
+                    let filters = { search: '', category: 'all', difficulty: 'all' };
+
+                    // Environment Detection
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const useEmulator = urlParams.has('emulator');
+                    const REGION = 'us-central1';
+                    const PROJECT_ID = 'five-clues-prod';
+                    const EMULATOR_BASE = 'http://localhost:5001/' + PROJECT_ID + '/' + REGION;
+                    const PROD_BASE = 'https://' + REGION + '-' + PROJECT_ID + '.cloudfunctions.net';
+                    const BASE_URL = useEmulator ? EMULATOR_BASE : PROD_BASE;
+
+                    console.log('Dashboard Mode:', (useEmulator ? 'EMULATOR' : 'PRODUCTION'), 'Base URL:', BASE_URL);
+
+                    window.switchTab = (tab) => {
+                        console.log('Tab switch:', tab);
+                        document.getElementById('statsTab').classList.toggle('active', tab === 'stats');
+                        document.getElementById('genTab').classList.toggle('active', tab === 'gen');
+                        document.getElementById('statsView').classList.toggle('active', tab === 'stats');
+                        document.getElementById('genView').classList.toggle('active', tab === 'gen');
+                        
+                        const controls = document.querySelector('.controls');
+                        if (controls) controls.style.display = tab === 'stats' ? 'flex' : 'none';
+                    };
+
+                    const showStatus = (msg, type) => {
+                        if (!statusMsg) return;
+                        statusMsg.textContent = msg;
+                        statusMsg.className = 'status-msg ' + type;
+                        if (type !== 'error') setTimeout(() => { statusMsg.className = 'status-msg'; }, 5000);
+                    };
+
+                    window.updateDifficulty = async (answer, newDifficulty, selectElement) => {
+                        console.log('Updating difficulty for:', answer, 'to:', newDifficulty);
+                        const originalValue = selectElement.dataset.original;
+                        selectElement.disabled = true;
+                        selectElement.style.opacity = '0.5';
+                        
+                        try {
+                            const response = await fetch(BASE_URL + '/updatePuzzleDifficulty', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ data: { answer, difficulty: parseInt(newDifficulty) } })
+                            });
+                            const result = await response.json();
+                            if (result.result && result.result.success) {
+                                selectElement.dataset.original = newDifficulty;
+                                showStatus('Updated ' + answer + ' to ' + newDifficulty, 'success');
+                                const item = stats.find(s => s.answer === answer);
+                                if (item) item.difficulty = parseInt(newDifficulty);
+                            } else {
+                                throw new Error((result.error && result.error.message) || 'Update failed');
+                            }
+                        } catch (error) {
+                            console.error('❌ Error updating difficulty:', error);
+                            alert('Failed to update difficulty: ' + error.message);
+                            selectElement.value = originalValue;
+                        } finally {
+                            selectElement.disabled = false;
+                            selectElement.style.opacity = '1';
+                        }
+                    };
+
+                    const fetchLiveStats = async () => {
+                        if (refreshBtn) refreshBtn.classList.add('spinning');
+                        try {
+                            const response = await fetch(BASE_URL + '/getPuzzleStats', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ data: {} })
+                            });
+                            const result = await response.json();
+                            if (result.result && result.result.stats) {
+                                stats = result.result.stats;
+                                populateCategories();
+                                render();
+                            }
+                        } catch (e) {
+                            console.error('Refresh failure:', e);
+                        } finally {
+                            if (refreshBtn) refreshBtn.classList.remove('spinning');
+                        }
+                    };
+
+                    const populateCategories = () => {
+                        const statsCategories = [...new Set(stats.map(s => s.categoryTag))].sort();
+                        const officialCategories = [
+                            "Space", "Nature", "Kitchen", "Sports", "History", "Movies", "Music", "Animals", "Geography", "Technology",
+                            "Fashion", "Art", "Science", "Literature", "Mythology", "Travel", "Food & Drink", "Business",
+                            "Health & Wellness", "Architecture", "Gardening", "Philosophy", "Psychology", "Languages",
+                            "Video Games", "Automotive", "Holidays", "Famous Landmarks", "Occupations & Professions", "Bible"
+                        ].sort();
+                        
+                        if (categoryFilter) {
+                            categoryFilter.innerHTML = '<option value="all">All Categories</option>';
+                            statsCategories.forEach(cat => {
+                                const opt = document.createElement('option');
+                                opt.value = cat;
+                                opt.textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
+                                categoryFilter.appendChild(opt);
+                            });
+                        }
+
+                        if (batchCategory) {
+                             batchCategory.innerHTML = '<option value="random">Random Theme</option>';
+                             officialCategories.forEach(cat => {
+                                 const opt = document.createElement('option');
+                                 opt.value = cat;
+                                 opt.textContent = cat;
+                                 batchCategory.appendChild(opt);
+                             });
+                        }
+                    };
+
+                    const renderSummary = (data) => {
+                        if (!summaryContainer) return;
+                        const totalUnique = data.length;
+                        const puzzlesPlayed = data.filter(s => s.totalPlayed > 0).length;
+                        const totalPlays = data.reduce((acc, curr) => acc + curr.totalPlayed, 0);
+                        
+                        summaryContainer.innerHTML = 
+                            '<div class="summary-item"><span class="summary-val">' + totalUnique + '</span><span class="summary-label">TOTAL UNIQUE PUZZLES</span></div>' +
+                            '<div class="summary-item"><span class="summary-val">' + puzzlesPlayed + '</span><span class="summary-label">TOTAL PUZZLES PLAYED</span></div>' +
+                            '<div class="summary-item"><span class="summary-val">' + totalPlays.toLocaleString() + '</span><span class="summary-label">TOTAL AGGREGATE PLAYS</span></div>';
+                    };
+
+                    const render = () => {
+                        if (!statsContainer) return;
+                        
+                        let filteredData = stats.filter(item => {
+                            const matchSearch = item.answer.toLowerCase().includes(filters.search.toLowerCase());
+                            const matchCategory = filters.category === 'all' || item.categoryTag === filters.category;
+                            const matchDifficulty = filters.difficulty === 'all' || String(item.difficulty) === filters.difficulty;
+                            return matchSearch && matchCategory && matchDifficulty;
+                        });
+
+                        filteredData.sort((a, b) => {
+                            for (let i = 0; i < currentSort.length; i++) {
+                                const s = currentSort[i];
+                                let valA = a[s.column];
+                                let valB = b[s.column];
+                                
+                                // Nulls/undefined should always go to the bottom
+                                if (valA === null || valA === undefined) {
+                                    if (valB === null || valB === undefined) continue;
+                                    return 1;
+                                }
+                                if (valB === null || valB === undefined) return -1;
+
+                                if (typeof valA === 'string' && typeof valB === 'string') {
+                                    valA = valA.toLowerCase();
+                                    valB = valB.toLowerCase();
+                                }
+                                
+                                if (valA < valB) return s.direction === 'asc' ? -1 : 1;
+                                if (valA > valB) return s.direction === 'asc' ? 1 : -1;
+                            }
+                            return 0;
+                        });
+
+                        const headers = [
+                            { key: 'answer', label: 'Answer' },
+                            { key: 'categoryTag', label: 'Category' },
+                            { key: 'difficulty', label: 'Diff' },
+                            { key: 'generator', label: 'Generator' },
+                            { key: 'dbCount', label: 'Count' },
+                            { key: 'totalPlayed', label: 'Played' },
+                            { key: 'createdAt', label: 'Created At' },
+                            { key: 'lastPlayedAt', label: 'Last Played' }
+                        ];
+
+                        let html = '<div style="text-align:right; font-size:0.7rem; color:var(--text-secondary); margin-bottom:0.5rem; opacity:0.6; padding-right:1rem;">Tip: Click to sort. Shift + Click for multi-level sort.</div><table class="stats-table"><thead><tr>';
+                        headers.forEach(h => {
+                            const sortIdx = currentSort.findIndex(s => s.column === h.key);
+                            const sortClass = sortIdx === 0 ? 'sort-' + currentSort[0].direction : '';
+                            const sortIndicator = sortIdx > 0 ? '<span class="sort-rank">' + (sortIdx + 1) + '</span>' : '';
+                            html += '<th class="' + sortClass + '" onclick="window.sortData(\'' + h.key + '\', event)">' + h.label + sortIndicator + '</th>';
+                        });
+                        html += '</tr></thead><tbody>';
+
+                        filteredData.forEach(item => {
+                             const categoryTag = item.categoryTag || 'random';
+                             const category = categoryTag.charAt(0).toUpperCase() + categoryTag.slice(1);
+                             const gen = item.generator || 'gemini';
+                             const isDeep = gen === 'deepseek';
+                             const created = new Date(item.createdAt).toLocaleString([], { dateStyle: 'short', timeStyle: 'short' });
+                             const lastPlayed = item.lastPlayedAt ? new Date(item.lastPlayedAt).toLocaleString([], { dateStyle: 'short', timeStyle: 'short' }) : '--';
+                             
+                             html += '<tr class="stats-row">' +
+                                 '<td class="answer-cell">' + item.answer + '</td>' +
+                                 '<td><span class="badge" style="background:rgba(99,102,241,0.1); color:#818cf8">' + category + '</span></td>' +
+                                 '<td>' + 
+                                     '<select class="diff-select" data-original="' + item.difficulty + '" onchange="window.updateDifficulty(\'' + item.answer.replace(/'/g, "\\'") + '\', this.value, this)">' + 
+                                         [1,2,3,4,5].map(d => '<option value="' + d + '" ' + (item.difficulty == d ? 'selected' : '') + '>' + d + '</option>').join('') +
+                                     '</select>' +
+                                 '</td>' +
+                                 '<td><span class="badge" style="background:' + (isDeep ? 'rgba(16,185,129,0.1)' : 'rgba(251,191,36,0.1)') + '; color:' + (isDeep ? '#10b981' : '#fbbf24') + '; font-size:10px; font-weight:600; text-transform:uppercase">' + gen + '</span></td>' +
+                                 '<td><span class="badge">' + item.dbCount + '</span></td>' +
+                                 '<td><span class="badge">' + item.totalPlayed + '</span></td>' +
+                                 '<td class="last-played">' + created + '</td>' +
+                                 '<td class="last-played">' + lastPlayed + '</td>' +
+                                 '</tr>';
+                        });
+                        html += '</tbody></table>';
+                        statsContainer.innerHTML = html;
+                        renderSummary(filteredData);
+                    };
+
+                    window.sortData = (col, event) => {
+                        try {
+                            const isMulti = event && (event.shiftKey || event.metaKey || event.ctrlKey);
+                            const existingIdx = currentSort.findIndex(s => s.column === col);
+                            
+                            if (isMulti) {
+                                if (existingIdx > -1) {
+                                    // Toggle direction in place
+                                    currentSort[existingIdx].direction = currentSort[existingIdx].direction === 'asc' ? 'desc' : 'asc';
+                                } else {
+                                    // Add to stack
+                                    currentSort.push({ 
+                                        column: col, 
+                                        direction: (col === 'answer' || col === 'categoryTag') ? 'asc' : 'desc' 
+                                    });
+                                }
+                            } else {
+                                // Normal click: Reset stack to JUST this column
+                                if (existingIdx === 0 && currentSort.length === 1) {
+                                    // Already the only sort, just toggle it
+                                    currentSort[0].direction = currentSort[0].direction === 'asc' ? 'desc' : 'asc';
+                                } else {
+                                    // Set as the only primary sort
+                                    currentSort = [{ 
+                                        column: col, 
+                                        direction: (col === 'answer' || col === 'categoryTag') ? 'asc' : 'desc' 
+                                    }];
+                                }
+                            }
+                            
+                            // Keep stack sane (max 5 levels)
+                            if (currentSort.length > 5) currentSort = currentSort.slice(0, 5);
+                            
+                            render();
+                        } catch (e) {
+                            console.error('Sort error:', e);
+                        }
+                    };
+
+                    const generateBatch = async () => {
+                        const count = parseInt(batchCountInput.value) || 5;
+                        const generator = batchGenerator.value;
+                        const category = batchCategory ? batchCategory.value : 'random';
+                        const includedCategories = category === 'random' ? [] : [category];
+                        const words = batchWordsInput ? batchWordsInput.value.trim() : '';
+                        
+                        batchBtn.disabled = true;
+                        batchBtn.textContent = 'Processing...';
+                        batchResults.innerHTML = '<div class="loader" style="padding:1rem"><div class="spinner"></div><p>Batch starting...</p></div>';
+                        
+                        try {
+                            const response = await fetch(BASE_URL + '/generateEndlessBatch', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ data: { count, generator, words, includedCategories } })
+                            });
+                            
+                            if (!response.ok) {
+                                throw new Error('HTTP Error: ' + response.status + ' ' + response.statusText);
+                            }
+
+                            const result = await response.json();
+                            const { puzzles, logs } = result.result || {};
+                            
+                            let html = '<div style="background:rgba(255,255,255,0.03); border-radius:12px; padding:1rem; margin-top:1rem;">';
+                            (logs || []).forEach(log => {
+                                const isSuccess = log.toLowerCase().includes('successfully');
+                                html += '<div style="color:' + (isSuccess ? '#10b981' : '#f87171') + '; font-size:0.85rem; margin-bottom:0.4rem">' + log + '</div>';
+                            });
+                            html += '<div style="margin-top:1rem; font-weight:700">Added ' + (puzzles || []).length + ' puzzles.</div></div>';
+                            batchResults.innerHTML = html;
+                            fetchLiveStats();
+                        } catch (e) {
+                            batchResults.innerHTML = '<div class="error-msg">Failed: ' + e.message + '</div>';
+                        } finally {
+                            batchBtn.disabled = false;
+                            batchBtn.textContent = 'Run Batch Generation';
+                        }
+                    };
+
+                    if (searchInput) searchInput.addEventListener('input', (e) => { filters.search = e.target.value; render(); });
+                    if (categoryFilter) categoryFilter.addEventListener('change', (e) => { filters.category = e.target.value; render(); });
+                    if (difficultyFilter) difficultyFilter.addEventListener('change', (e) => { filters.difficulty = e.target.value; render(); });
+                    if (refreshBtn) refreshBtn.addEventListener('click', fetchLiveStats);
+                    if (resetBtn) resetBtn.addEventListener('click', () => {
+                        if (searchInput) {
+                            searchInput.value = '';
+                            filters.search = '';
+                        }
+                        if (categoryFilter) {
+                            categoryFilter.value = 'all';
+                            filters.category = 'all';
+                        }
+                        if (difficultyFilter) {
+                            difficultyFilter.value = 'all';
+                            filters.difficulty = 'all';
+                        }
+                        currentSort = [{ column: 'answer', direction: 'asc' }];
+                        render();
+                    });
+                    
+                    if (batchBtn) batchBtn.addEventListener('click', generateBatch);
+
+                    // --- Scroll Button Logic ---
+                    const scrollBtn = document.createElement('button');
+                    scrollBtn.id = 'scrollBtn';
+                    scrollBtn.className = 'scroll-btn';
+                    scrollBtn.title = 'Scroll to Bottom';
+                    scrollBtn.innerHTML = 
+                        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">' +
+                            '<polyline points="7 13 12 18 17 13"></polyline>' +
+                            '<polyline points="7 6 12 11 17 6"></polyline>' +
+                        '</svg>';
+                    document.body.appendChild(scrollBtn);
+
+                    const handleScroll = () => {
+                        const scrollTotal = document.documentElement.scrollHeight - window.innerHeight;
+                        if (scrollTotal <= 0) {
+                            scrollBtn.classList.remove('visible');
+                            return;
+                        }
+                        const progress = window.scrollY / scrollTotal;
+                        if (window.scrollY > 300 || scrollTotal > 1000) {
+                            scrollBtn.classList.add('visible');
+                        } else {
+                            scrollBtn.classList.remove('visible');
+                        }
+                        if (progress > 0.8) {
+                            scrollBtn.classList.add('up');
+                            scrollBtn.title = 'Scroll to Top';
+                        } else {
+                            scrollBtn.classList.remove('up');
+                            scrollBtn.title = 'Scroll to Bottom';
+                        }
+                    };
+
+                    scrollBtn.addEventListener('click', () => {
+                        const isUp = scrollBtn.classList.contains('up');
+                        window.scrollTo({ top: isUp ? 0 : document.documentElement.scrollHeight, behavior: 'smooth' });
+                    });
+
+                    window.addEventListener('scroll', handleScroll);
+                    window.addEventListener('resize', handleScroll);
+                    setInterval(handleScroll, 1000);
+
+                    console.log('🚀 Initializing UI components...');
+                    if (stats.length === 0) {
+                        fetchLiveStats();
+                    } else {
+                        populateCategories();
+                        render();
+                    }
+                    console.log('✨ Initialization Complete.');
+                } catch (initError) {
+                    console.error('❌ Initialization Failure:', initError);
+                }
+            })();
+        </script>
+    
+</body>
+
+</html>
