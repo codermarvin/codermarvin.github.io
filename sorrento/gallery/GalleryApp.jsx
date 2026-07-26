@@ -4,7 +4,6 @@ import {
   UploadCloud,
   X,
   Trash2,
-  Settings,
   Search,
   ArrowUpDown,
   User,
@@ -537,21 +536,6 @@ export default function GalleryApp() {
                 </button>
               </div>
             )}
-
-            <button
-              onClick={() => setShowSettings(true)}
-              className="rounded-2xl border border-white/10 bg-white/5 p-2.5 text-slate-300 hover:bg-white/10 transition"
-              title="Settings"
-            >
-              <Settings className="h-4 w-4" />
-            </button>
-
-            <a
-              href="/"
-              className="rounded-2xl border border-cyan-400/20 bg-cyan-400/10 px-4 py-2.5 text-xs font-semibold text-cyan-300 hover:bg-cyan-400/15 transition"
-            >
-              Portfolio Root
-            </a>
           </div>
         </div>
       </header>
@@ -559,40 +543,6 @@ export default function GalleryApp() {
       {/* Main Content Container */}
       <main className="relative z-10 mx-auto max-w-[1600px] px-6 py-8 md:px-10">
         
-        {/* Onboarding Notice for Demo Mode setup */}
-        {isDemoMode && (
-          <div className="mb-8 rounded-3xl border border-amber-500/20 bg-amber-500/5 p-6 backdrop-blur-md">
-            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-              <div className="flex items-start gap-4">
-                <div className="rounded-2xl bg-amber-500/10 p-3 text-amber-400">
-                  <AlertTriangle className="h-6 w-6" />
-                </div>
-                <div>
-                  <h3 className="font-bold text-amber-400">Connect to your Google Drive</h3>
-                  <p className="mt-1 text-sm text-slate-300 max-w-2xl leading-relaxed">
-                    This gallery is currently running in <strong>Demo Mode</strong>. Photos you upload will be stored locally in your browser. 
-                    To save files permanently in your Google Drive folder, deploy the Google Apps Script and enter the Web App URL.
-                  </p>
-                </div>
-              </div>
-              <div className="flex gap-3">
-                <button
-                  onClick={() => setShowSetupGuide(true)}
-                  className="rounded-xl bg-amber-500 px-4 py-2.5 text-xs font-bold text-slate-950 hover:bg-amber-400 transition"
-                >
-                  Show Setup Guide
-                </button>
-                <button
-                  onClick={() => setShowSettings(true)}
-                  className="rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-xs font-semibold text-white hover:bg-white/10 transition"
-                >
-                  Configure API URL
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
-
         <div className="grid gap-8 lg:grid-cols-[350px_1fr]">
           
           {/* LEFT: Upload Box & User Profile */}

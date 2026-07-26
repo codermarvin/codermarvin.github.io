@@ -3,6 +3,7 @@ name: Deploy Vite site to GitHub Pages
 on:
   push:
     branches:
+      - main
       - master
   workflow_dispatch:
 
@@ -33,6 +34,8 @@ jobs:
         run: npm ci
 
       - name: Build site
+        env:
+          VITE_APPS_SCRIPT_URL: ${{ secrets.VITE_APPS_SCRIPT_URL }}
         run: npm run build
 
       - name: Setup GitHub Pages
