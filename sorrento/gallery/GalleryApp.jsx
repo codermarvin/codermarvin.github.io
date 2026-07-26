@@ -92,6 +92,17 @@ export default function GalleryApp() {
 
   const fileInputRef = useRef(null);
   const touchStartX = useRef(null);
+  const lightboxHistoryPushed = useRef(false);
+
+  // Close lightbox and clean up the history entry we pushed
+  const closeLightbox = () => {
+    if (lightboxHistoryPushed.current) {
+      lightboxHistoryPushed.current = false;
+      history.back(); // triggers popstate → setActiveLightbox(null)
+    } else {
+      setActiveLightbox(null);
+    }
+  };
 
   // Initialize and fetch photos
   useEffect(() => {
@@ -488,12 +499,32 @@ export default function GalleryApp() {
       } else if (e.key === 'ArrowRight') {
         handleNextPhoto();
       } else if (e.key === 'Escape') {
-        setActiveLightbox(null);
+        closeLightbox();
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [activeLightbox, filteredPhotos]);
+
+  // Push a history entry when lightbox opens so the back button closes it
+  useEffect(() => {
+    if (activeLightbox) {
+      history.pushState({ lightboxOpen: true }, '');
+      lightboxHistoryPushed.current = true;
+    }
+  }, [activeLightbox?.id]);
+
+  // Intercept the browser/device back button while lightbox is open
+  useEffect(() => {
+    const handlePopState = () => {
+      if (activeLightbox) {
+        lightboxHistoryPushed.current = false;
+        setActiveLightbox(null);
+      }
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, [activeLightbox]);
 
   return (
     <div className="gallery-root relative min-h-screen overflow-x-hidden bg-slate-950 text-slate-100 selection:bg-cyan-500/20 selection:text-white">
@@ -1000,7 +1031,7 @@ export default function GalleryApp() {
         {activeLightbox && (
            <div
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/95 backdrop-blur-sm"
-            onClick={() => setActiveLightbox(null)}
+            onClick={() => closeLightbox()}
             onTouchStart={(e) => {
               touchStartX.current = e.touches[0].clientX;
             }}
@@ -1014,7 +1045,7 @@ export default function GalleryApp() {
             }}
           >
             <button
-              onClick={() => setActiveLightbox(null)}
+              onClick={() => closeLightbox()}
               className="absolute right-4 top-4 z-50 rounded-xl bg-slate-900 border border-white/10 p-3 text-slate-300 hover:text-white hover:bg-slate-800 transition"
               title="Close View"
             >
