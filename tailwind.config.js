@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./index.html', './src/**/*.{js,jsx}', './sorrento/gallery/**/*.{html,js,jsx}'],
+  content: ['./index.html', './src/**/*.{js,jsx,css}', './sorrento/gallery/**/*.{html,js,jsx,css}'],
   theme: {
     extend: {
       boxShadow: {

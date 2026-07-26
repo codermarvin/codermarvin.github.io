@@ -91,6 +91,7 @@ export default function GalleryApp() {
   const [showSetupGuide, setShowSetupGuide] = useState(false);
 
   const fileInputRef = useRef(null);
+  const touchStartX = useRef(null);
 
   // Initialize and fetch photos
   useEffect(() => {
@@ -495,10 +496,10 @@ export default function GalleryApp() {
   }, [activeLightbox, filteredPhotos]);
 
   return (
-    <div className="relative min-h-screen overflow-x-hidden bg-slate-950 text-slate-100 selection:bg-cyan-500/20 selection:text-white">
+    <div className="gallery-root relative min-h-screen overflow-x-hidden bg-slate-950 text-slate-100 selection:bg-cyan-500/20 selection:text-white">
       {/* Background gradients */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(14,165,233,0.12),transparent_40%),radial-gradient(circle_at_20%_35%,rgba(99,102,241,0.08),transparent_35%)]" />
-      <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_80%,rgba(2,6,23,0.9))] pointer-events-none" />
+
 
       {/* Header */}
       <header className="sticky top-0 z-40 border-b border-white/5 bg-slate-950/70 backdrop-blur-xl">
@@ -654,20 +655,20 @@ export default function GalleryApp() {
                   </div>
 
                   {/* Control Buttons */}
-                  <div className="flex gap-2">
-                    <button
-                      onClick={clearAllQueue}
-                      disabled={isUploading}
-                      className="flex-1 rounded-xl border border-white/10 bg-white/5 py-2.5 text-xs font-semibold text-slate-300 hover:bg-white/10 disabled:opacity-50 transition"
-                    >
-                      Clear All
-                    </button>
+                  <div className="flex flex-col gap-2">
                     <button
                       onClick={handleUploadQueue}
                       disabled={isUploading || !currentUser || uploadQueue.filter(i => i.status === 'ready').length === 0}
-                      className="flex-2 w-full rounded-xl bg-cyan-500 py-2.5 text-xs font-bold text-slate-950 hover:bg-cyan-400 disabled:opacity-50 disabled:hover:bg-cyan-500 transition"
+                      className="w-full rounded-xl bg-cyan-500 py-2.5 text-xs font-bold text-slate-950 hover:bg-cyan-400 disabled:opacity-50 disabled:hover:bg-cyan-500 transition"
                     >
                       {!currentUser ? 'Set Name First' : isUploading ? 'Uploading...' : `Upload ${uploadQueue.filter(i => i.status === 'ready').length} Photos`}
+                    </button>
+                    <button
+                      onClick={clearAllQueue}
+                      disabled={isUploading}
+                      className="w-full rounded-xl border border-white/10 bg-white/5 py-2.5 text-xs font-semibold text-slate-300 hover:bg-white/10 disabled:opacity-50 transition"
+                    >
+                      Clear All
                     </button>
                   </div>
                 </div>
@@ -814,20 +815,20 @@ export default function GalleryApp() {
                         )}
 
                         {/* Bottom Info Overlay */}
-                        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-transparent p-4 flex flex-col justify-end pt-12">
-                          <p className="text-xs font-semibold text-white truncate mb-1">
+                        <div className="card-overlay absolute inset-x-0 bottom-0 bg-gradient-to-t from-black via-black/60 to-transparent p-4 flex flex-col justify-end pt-14">
+                          <p className="text-xs font-semibold !text-white truncate mb-1 drop-shadow">
                             {photo.name}
                           </p>
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-1.5">
-                              <div className={`h-4.5 w-4.5 rounded-full bg-gradient-to-tr ${getAvatarStyle(photo.uploader)} flex items-center justify-center text-[8px] font-bold text-white`}>
+                              <div className={`h-4.5 w-4.5 rounded-full bg-gradient-to-tr ${getAvatarStyle(photo.uploader)} flex items-center justify-center text-[8px] font-bold !text-white`}>
                                 {photo.uploader.substring(0, 2).toUpperCase()}
                               </div>
-                              <span className="text-[10px] font-semibold text-slate-300">
+                              <span className="text-[10px] font-semibold !text-white/90 drop-shadow">
                                 {photo.uploader}
                               </span>
                             </div>
-                            <span className="text-[9px] text-slate-400">
+                            <span className="text-[9px] !text-white/70 drop-shadow">
                               {formatDate(photo.uploadedAt)}
                             </span>
                           </div>
@@ -997,9 +998,20 @@ export default function GalleryApp() {
       {/* MODAL 3: Photo Lightbox View */}
       <AnimatePresence>
         {activeLightbox && (
-          <div
+           <div
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/95 backdrop-blur-sm"
             onClick={() => setActiveLightbox(null)}
+            onTouchStart={(e) => {
+              touchStartX.current = e.touches[0].clientX;
+            }}
+            onTouchEnd={(e) => {
+              if (touchStartX.current === null) return;
+              const delta = e.changedTouches[0].clientX - touchStartX.current;
+              touchStartX.current = null;
+              if (Math.abs(delta) < 50) return; // too short, ignore
+              if (delta < 0) handleNextPhoto(); // swipe left → next
+              else handlePrevPhoto();            // swipe right → prev
+            }}
           >
             <button
               onClick={() => setActiveLightbox(null)}
@@ -1009,33 +1021,6 @@ export default function GalleryApp() {
               <X className="h-5 w-5" />
             </button>
 
-            {/* Previous Photo Button */}
-            {getLightboxIndex() > 0 && (
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handlePrevPhoto();
-                }}
-                className="absolute left-6 top-1/2 -translate-y-1/2 z-50 rounded-full bg-slate-900/60 border border-white/10 p-4 text-slate-300 hover:text-white hover:bg-slate-800/80 transition shadow-lg shadow-black/20"
-                title="Previous Photo"
-              >
-                <ChevronLeft className="h-6 w-6" />
-              </button>
-            )}
-
-            {/* Next Photo Button */}
-            {getLightboxIndex() !== -1 && getLightboxIndex() < filteredPhotos.length - 1 && (
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleNextPhoto();
-                }}
-                className="absolute right-6 top-1/2 -translate-y-1/2 z-50 rounded-full bg-slate-900/60 border border-white/10 p-4 text-slate-300 hover:text-white hover:bg-slate-800/80 transition shadow-lg shadow-black/20"
-                title="Next Photo"
-              >
-                <ChevronRight className="h-6 w-6" />
-              </button>
-            )}
 
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
@@ -1045,7 +1030,7 @@ export default function GalleryApp() {
               onClick={(e) => e.stopPropagation()}
               className="relative max-w-4xl w-full max-h-[85vh] flex flex-col items-center justify-center"
             >
-              <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-slate-900 aspect-auto shadow-2xl flex items-center justify-center">
+              <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-slate-900 aspect-auto shadow-2xl flex items-center justify-center w-full">
                 <img
                   src={activeLightbox.url}
                   alt={activeLightbox.name}
@@ -1056,6 +1041,34 @@ export default function GalleryApp() {
                     }
                   }}
                 />
+
+                {/* Previous Photo Button — centered on the photo */}
+                {getLightboxIndex() > 0 && (
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handlePrevPhoto();
+                    }}
+                    className="absolute left-2 top-1/2 -translate-y-1/2 z-50 p-2 text-white/70 hover:text-white transition-all duration-200 drop-shadow-lg"
+                    title="Previous Photo"
+                  >
+                    <ChevronLeft className="h-10 w-10" />
+                  </button>
+                )}
+
+                {/* Next Photo Button — centered on the photo */}
+                {getLightboxIndex() !== -1 && getLightboxIndex() < filteredPhotos.length - 1 && (
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleNextPhoto();
+                    }}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 z-50 p-2 text-white/70 hover:text-white transition-all duration-200 drop-shadow-lg"
+                    title="Next Photo"
+                  >
+                    <ChevronRight className="h-10 w-10" />
+                  </button>
+                )}
               </div>
 
               {/* Lightbox Footer Actions & Meta */}

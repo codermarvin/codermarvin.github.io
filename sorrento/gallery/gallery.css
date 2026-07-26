@@ -1,0 +1,150 @@
+/*
+  gallery.css — Theme tokens for the Sorrento Photo Gallery.
+  Uses prefers-color-scheme to switch between dark (default) and light palettes.
+  All colors are defined as CSS custom properties and applied via the .gallery-root
+  class so they scope only to the gallery page.
+*/
+
+/* ─── Dark palette (default) ─────────────────────────────────────────────── */
+.gallery-root {
+  --g-bg:           #020617;   /* slate-950 */
+  --g-surface:      #0f172a;   /* slate-900 */
+  --g-surface-2:    #1e293b;   /* slate-800 */
+  --g-surface-3:    #334155;   /* slate-700 */
+  --g-border:       rgba(255, 255, 255, 0.08);
+  --g-border-hover: rgba(255, 255, 255, 0.16);
+  --g-text:         #f1f5f9;   /* slate-100 */
+  --g-text-2:       #cbd5e1;   /* slate-300 */
+  --g-text-3:       #94a3b8;   /* slate-400 */
+  --g-overlay:      rgba(2, 6, 23, 0.95);
+  --g-glass:        rgba(255, 255, 255, 0.04);
+  --g-glass-border: rgba(255, 255, 255, 0.08);
+  --g-input-bg:     rgba(255, 255, 255, 0.05);
+  --g-input-border: rgba(255, 255, 255, 0.10);
+  --g-hover:        rgba(255, 255, 255, 0.07);
+  --g-card-shadow:  0 8px 32px rgba(0, 0, 0, 0.5);
+  --g-backdrop:     rgba(2, 6, 23, 0.80);
+}
+
+/* ─── Light palette ───────────────────────────────────────────────────────── */
+@media (prefers-color-scheme: light) {
+  .gallery-root {
+    --g-bg:           #f8fafc;   /* slate-50 */
+    --g-surface:      #ffffff;
+    --g-surface-2:    #f1f5f9;   /* slate-100 */
+    --g-surface-3:    #e2e8f0;   /* slate-200 */
+    --g-border:       rgba(15, 23, 42, 0.10);
+    --g-border-hover: rgba(15, 23, 42, 0.20);
+    --g-text:         #0f172a;   /* slate-900 */
+    --g-text-2:       #334155;   /* slate-700 */
+    --g-text-3:       #64748b;   /* slate-500 */
+    --g-overlay:      rgba(248, 250, 252, 0.97);
+    --g-glass:        rgba(255, 255, 255, 0.70);
+    --g-glass-border: rgba(15, 23, 42, 0.08);
+    --g-input-bg:     rgba(15, 23, 42, 0.04);
+    --g-input-border: rgba(15, 23, 42, 0.12);
+    --g-hover:        rgba(15, 23, 42, 0.05);
+    --g-card-shadow:  0 4px 20px rgba(0, 0, 0, 0.10);
+    --g-backdrop:     rgba(248, 250, 252, 0.85);
+  }
+}
+
+/* ─── Apply tokens to gallery elements ───────────────────────────────────── */
+
+/* Root page background */
+.gallery-root {
+  background-color: var(--g-bg);
+  color: var(--g-text);
+  transition: background-color 0.2s, color 0.2s;
+}
+
+/* Sticky header */
+.gallery-root header {
+  background-color: color-mix(in srgb, var(--g-bg) 75%, transparent);
+  border-bottom-color: var(--g-border);
+}
+
+/* All glass panels / cards */
+.gallery-root .glass,
+.gallery-root [class*="bg-slate-900"],
+.gallery-root [class*="bg-slate-950"] {
+  background-color: var(--g-surface) !important;
+  border-color: var(--g-border) !important;
+}
+
+.gallery-root [class*="bg-slate-800"] {
+  background-color: var(--g-surface-2) !important;
+}
+
+/* Text color overrides — excluded from .card-overlay descendants */
+.gallery-root [class*="text-white"]:not([class*="hover:"]):not(.card-overlay):not(.card-overlay *) {
+  color: var(--g-text) !important;
+}
+
+.gallery-root [class*="text-slate-300"]:not([class*="hover:"]):not([class*="text-cyan"]):not([class*="text-rose"]):not([class*="text-emerald"]):not([class*="text-amber"]):not(.card-overlay):not(.card-overlay *) {
+  color: var(--g-text-2) !important;
+}
+
+.gallery-root [class*="text-slate-400"]:not([class*="hover:"]):not([class*="text-cyan"]):not([class*="text-rose"]):not([class*="text-emerald"]):not([class*="text-amber"]):not(.card-overlay):not(.card-overlay *) {
+  color: var(--g-text-3) !important;
+}
+
+/* Input fields */
+.gallery-root input[type="text"],
+.gallery-root input[type="password"],
+.gallery-root input[type="email"] {
+  background-color: var(--g-input-bg) !important;
+  border-color: var(--g-input-border) !important;
+  color: var(--g-text) !important;
+}
+
+.gallery-root input::placeholder {
+  color: var(--g-text-3) !important;
+}
+
+/* Interactive surface hover states */
+.gallery-root [class*="bg-white\\/5"],
+.gallery-root [class*="bg-white\\/10"] {
+  background-color: var(--g-glass) !important;
+}
+
+.gallery-root [class*="border-white\\/10"],
+.gallery-root [class*="border-white\\/5"] {
+  border-color: var(--g-border) !important;
+}
+
+/* Lightbox overlay */
+.gallery-root .lightbox-overlay {
+  background-color: var(--g-overlay);
+}
+
+/* Photo card shadow */
+.gallery-root .photo-card {
+  box-shadow: var(--g-card-shadow);
+}
+
+/* Backdrop of all modals */
+.gallery-root .modal-backdrop {
+  background-color: var(--g-backdrop);
+}
+
+/* Header backdrop-blur bg fix */
+.gallery-root .header-blur {
+  background-color: color-mix(in srgb, var(--g-bg) 80%, transparent);
+  border-bottom-color: var(--g-border);
+}
+
+/* Selection color stays cyan-ish */
+.gallery-root ::selection {
+  background: rgba(34, 211, 238, 0.25);
+  color: var(--g-text);
+}
+
+/* ─── Photo card overlays: always white text regardless of color scheme ───── */
+/* These sit on top of dark photo gradients and must never inherit light colors */
+.gallery-root .card-overlay {
+  color: white !important;
+}
+.gallery-root .card-overlay * {
+  color: inherit;
+}

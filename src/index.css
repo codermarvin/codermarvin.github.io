@@ -20,6 +20,13 @@ body {
   color: #e2e8f0;
 }
 
+@media (prefers-color-scheme: light) {
+  body {
+    background: #f8fafc;
+    color: #0f172a;
+  }
+}
+
 * {
   box-sizing: border-box;
 }
