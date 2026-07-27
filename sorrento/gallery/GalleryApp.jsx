@@ -65,7 +65,7 @@ export default function GalleryApp() {
   const [appsScriptUrl, setAppsScriptUrl] = useState(() => {
     return import.meta.env.VITE_APPS_SCRIPT_URL || localStorage.getItem('sorrento_api_url') || '';
   });
-  
+
   const [currentUser, setCurrentUser] = useState(() => {
     return localStorage.getItem('sorrento_gallery_user') || '';
   });
@@ -75,15 +75,15 @@ export default function GalleryApp() {
   const [photos, setPhotos] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  
+
   // Search & Filters
   const [searchQuery, setSearchQuery] = useState('');
   const [sortOrder, setSortOrder] = useState('newest'); // newest, oldest
-  
+
   // Upload States (Queue-based Multi-upload)
   const [uploadQueue, setUploadQueue] = useState([]);
   const [isUploading, setIsUploading] = useState(false);
-  
+
   // UI Panels
   const [activeLightbox, setActiveLightbox] = useState(null);
   const [showSettings, setShowSettings] = useState(false);
@@ -124,7 +124,7 @@ export default function GalleryApp() {
   const fetchPhotos = async () => {
     setLoading(true);
     setError(null);
-    
+
     if (!appsScriptUrl) {
       // Demo mode: Load mock photos + any photos uploaded in local storage
       const localPhotos = JSON.parse(localStorage.getItem('sorrento_local_photos') || '[]');
@@ -190,11 +190,11 @@ export default function GalleryApp() {
   // Handle File Drag/Drop or Select (Multiple Files)
   const handleFileChange = async (filesList) => {
     if (!filesList || filesList.length === 0) return;
-    
+
     const newItems = [];
     const files = Array.from(filesList);
     const maxFiles = 15;
-    
+
     // Limit to max 15 files at once
     const filesToProcess = files.slice(0, maxFiles);
     if (files.length > maxFiles) {
@@ -208,7 +208,7 @@ export default function GalleryApp() {
 
       const queueId = 'q-' + Math.random().toString(36).substr(2, 9) + '-' + Date.now();
       const previewUrl = URL.createObjectURL(file);
-      
+
       const item = {
         id: queueId,
         file: file,
@@ -220,7 +220,7 @@ export default function GalleryApp() {
         status: 'compressing',
         error: null
       };
-      
+
       newItems.push(item);
       compressQueueItem(queueId, file);
     }
@@ -261,7 +261,7 @@ export default function GalleryApp() {
   // Upload Queue Sequentially
   const handleUploadQueue = async () => {
     if (!currentUser || isUploading) return;
-    
+
     const itemsToUpload = uploadQueue.filter(item => item.status === 'ready');
     if (itemsToUpload.length === 0) return;
 
@@ -274,7 +274,7 @@ export default function GalleryApp() {
       if (isDemoMode) {
         // Simulate upload delay for Demo mode
         await new Promise(resolve => setTimeout(resolve, 800));
-        
+
         const newPhoto = {
           id: 'local-' + Date.now() + '-' + Math.random().toString(36).substr(2, 5),
           name: item.name.replace(/\.[^/.]+$/, '') + '.jpg',
@@ -359,7 +359,7 @@ export default function GalleryApp() {
   // Handle Photo Deletion
   const handleDeletePhoto = async (photo, e) => {
     e.stopPropagation(); // Avoid opening lightbox
-    
+
     // Safety check
     if (photo.uploader.toLowerCase() !== currentUser.toLowerCase()) {
       alert(`Unauthorized: This photo belongs to ${photo.uploader}.`);
@@ -375,12 +375,12 @@ export default function GalleryApp() {
         alert("Mock photos cannot be deleted in demo mode.");
         return;
       }
-      
+
       // Delete from local storage
       const localPhotos = JSON.parse(localStorage.getItem('sorrento_local_photos') || '[]');
       const updatedLocal = localPhotos.filter(p => p.id !== photo.id);
       localStorage.setItem('sorrento_local_photos', JSON.stringify(updatedLocal));
-      
+
       setPhotos(photos.filter(p => p.id !== photo.id));
       return;
     }
@@ -402,7 +402,7 @@ export default function GalleryApp() {
       }
 
       const result = await response.json();
-      
+
       if (result.success) {
         // Success
         setPhotos(photos.filter(p => p.id !== photo.id));
@@ -450,7 +450,7 @@ export default function GalleryApp() {
     if (diffHours < 24) return `${diffHours}h ago`;
     if (diffDays === 1) return 'Yesterday';
     if (diffDays < 7) return `${diffDays} days ago`;
-    
+
     return date.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
   };
 
@@ -574,16 +574,21 @@ export default function GalleryApp() {
 
       {/* Main Content Container */}
       <main className="relative z-10 mx-auto max-w-[1600px] px-6 py-8 md:px-10">
-        
+
         <div className="grid gap-8 lg:grid-cols-[350px_1fr]">
-          
+
           {/* LEFT: Upload Box & User Profile */}
           <div className="space-y-6">
             <div className="glass rounded-[2rem] p-6">
-              <h2 className="text-md font-bold text-white mb-4 flex items-center gap-2">
+              <h2 className="text-md font-bold text-white mb-2 flex items-center gap-2">
                 <UploadCloud className="h-5 w-5 text-cyan-300" />
                 Upload New Photo
               </h2>
+              <p className="text-[11px] text-slate-400 leading-relaxed mb-4">
+                Your photos will be featured in the slideshow during the{' '}
+                <span className="text-slate-300 font-medium">Convention Delegate Congregation Hosting</span> program.
+                By uploading, you consent to your photos being used exclusively for the event slideshow and no other purpose.
+              </p>
 
               {/* Drag/Drop Box / Multi-file Selector */}
               {uploadQueue.length === 0 ? (
@@ -674,7 +679,7 @@ export default function GalleryApp() {
                     <span className="text-slate-400">
                       {uploadQueue.filter(item => item.status === 'success').length} of {uploadQueue.length} done
                     </span>
-                    
+
                     {uploadQueue.some(item => item.status === 'success' || item.status === 'error') && !isUploading && (
                       <button
                         onClick={clearCompletedQueue}
@@ -733,10 +738,10 @@ export default function GalleryApp() {
 
           {/* RIGHT: Photos Grid */}
           <div className="space-y-6">
-            
+
             {/* Filters bar */}
             <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-              
+
               {/* Search */}
               <div className="relative flex-1 max-w-md">
                 <Search className="absolute left-3 top-3.5 h-4 w-4 text-slate-400" />
@@ -766,7 +771,7 @@ export default function GalleryApp() {
                   <ArrowUpDown className="h-3.5 w-3.5" />
                   <span>Sorted by: {sortOrder === 'newest' ? 'Newest' : 'Oldest'}</span>
                 </button>
-                
+
                 <button
                   onClick={fetchPhotos}
                   disabled={loading}
@@ -837,7 +842,7 @@ export default function GalleryApp() {
                           <div className="absolute right-2 top-2 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                             <button
                               onClick={(e) => handleDeletePhoto(photo, e)}
-                              className="rounded-xl bg-slate-950/70 border border-rose-500/20 p-2 text-rose-400 backdrop-blur hover:bg-rose-500 hover:text-white transition duration-200"
+                              className="rounded-xl !bg-black/30 hover:!bg-rose-600 !border !border-white/10 p-2 !text-white backdrop-blur-sm transition duration-200 drop-shadow"
                               title="Delete Photo"
                             >
                               <Trash2 className="h-3.5 w-3.5" />
@@ -850,16 +855,16 @@ export default function GalleryApp() {
                           <p className="text-xs font-semibold !text-white truncate mb-1 drop-shadow">
                             {photo.name}
                           </p>
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-1.5">
-                              <div className={`h-4.5 w-4.5 rounded-full bg-gradient-to-tr ${getAvatarStyle(photo.uploader)} flex items-center justify-center text-[8px] font-bold !text-white`}>
+                          <div className="flex items-center justify-between gap-1">
+                            <div className="flex items-center gap-1.5 min-w-0">
+                              <div className={`h-5 w-5 rounded-full bg-gradient-to-tr ${getAvatarStyle(photo.uploader)} flex items-center justify-center text-[8px] font-bold !text-white shrink-0`}>
                                 {photo.uploader.substring(0, 2).toUpperCase()}
                               </div>
-                              <span className="text-[10px] font-semibold !text-white/90 drop-shadow">
+                              <span className="text-[10px] font-semibold !text-white/90 drop-shadow truncate">
                                 {photo.uploader}
                               </span>
                             </div>
-                            <span className="text-[9px] !text-white/70 drop-shadow">
+                            <span className="text-[9px] !text-white/70 drop-shadow whitespace-nowrap shrink-0">
                               {formatDate(photo.uploadedAt)}
                             </span>
                           </div>
@@ -892,7 +897,7 @@ export default function GalleryApp() {
                 <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-cyan-500/10 border border-cyan-400/20 text-cyan-300 mb-6">
                   <Camera className="h-6 w-6" />
                 </div>
-                
+
                 <h2 className="text-2xl font-extrabold text-white tracking-tight">Sorrento Gallery</h2>
                 <p className="mt-2 text-sm text-slate-400 leading-relaxed">
                   Welcome to the photo stream! Please set a nickname so friends know who uploaded each photo.
@@ -1029,7 +1034,7 @@ export default function GalleryApp() {
       {/* MODAL 3: Photo Lightbox View */}
       <AnimatePresence>
         {activeLightbox && (
-           <div
+          <div
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/95 backdrop-blur-sm"
             onClick={() => closeLightbox()}
             onTouchStart={(e) => {
@@ -1164,7 +1169,7 @@ export default function GalleryApp() {
                 <p>
                   To link this app to your private Google Drive folder, we deploy a lightweight, free script using <strong>Google Apps Script</strong>.
                 </p>
-                
+
                 <ol className="list-decimal pl-5 space-y-3 mt-2 text-slate-300">
                   <li>
                     Go to your Google Drive folder: <a href="https://drive.google.com/drive/folders/1557b_d7KlCtqkW-7_wIW6jWlzjs9k5og" target="_blank" rel="noreferrer" className="text-cyan-400 hover:underline inline-flex items-center gap-0.5">1557b_d7KlCtqkW-7_wIW6j... <ExternalLink className="h-3 w-3" /></a>.
