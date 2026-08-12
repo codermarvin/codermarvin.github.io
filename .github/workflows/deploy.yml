@@ -17,7 +17,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  NODE_OPTIONS: "--use-system-ca"
+  NODE_TLS_REJECT_UNAUTHORIZED: "0"
 
 jobs:
   build:
