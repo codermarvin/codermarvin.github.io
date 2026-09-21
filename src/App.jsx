@@ -26,12 +26,14 @@ const skills = [
   'REST APIs',
   'Google Maps SDK',
   'Stripe Payments',
+  'In-App Purchases',
   'Google AdMob',
+  'AI-Assisted Development',
   'Localization (i18n)',
   'App Store Deployment',
   'Performance Optimization',
   'Push Notifications',
-  'Agile / Remote Collaboration',
+  'Agile/Remote Collaboration',
 ];
 
 const GITHUB_USERNAME = 'codermarvin';
@@ -51,7 +53,7 @@ const projects = [
   },
   {
     name: 'Racer',
-    type: 'Racing App',
+    type: 'Racing Companion App',
     description:
       'Your all-in-one racing app. High-performance mobile experience for enthusiasts.',
     tags: ['Flutter', 'Sports', 'Performance', 'UX'],
@@ -59,7 +61,7 @@ const projects = [
   },
   {
     name: 'Regala Top - CL',
-    type: 'Virtual Gift List App',
+    type: 'Virtual Gift App',
     description:
       'Everyone’s favorite virtual gift list app. A social gifting platform for sharing and tracking gift wishlists.',
     tags: ['Flutter', 'Social', 'E-commerce', 'Mobile'],
@@ -74,8 +76,8 @@ const projects = [
   //   link: '#',
   // },
   {
-    name: 'bXTRA PH',
-    type: 'Rewards & Cashback',
+    name: 'bXTRA',
+    type: 'Cashback Marketplace App',
     description:
       'Shopping and dining experience while enjoying exclusive Cashback rewards. Integrated rewards platform for retail and dining.',
     tags: ['Flutter', 'Rewards', 'Cashback', 'Payments'],
@@ -83,7 +85,7 @@ const projects = [
   },
   {
     name: 'MyBasurero',
-    type: 'Waste Collection Service',
+    type: 'Recycling Rewards App',
     description:
       'Hassle-free, safe, and secure waste collection service. Streamlining waste management through digital solutions.',
     tags: ['Flutter', 'Utility', 'Logistics', 'Sustainability'],
@@ -91,7 +93,7 @@ const projects = [
   },
   {
     name: 'Field Service Record',
-    type: 'Multilingual Utility App',
+    type: 'Multilingual Productivity App',
     description:
       'Helps record, organize, and track ministry activities for Jehovah’s Witnesses. Supports 17 languages. Available in Google Play and Apple Store.',
     tags: ['Flutter', 'Firebase', 'Localization', 'AdMob'],
@@ -101,7 +103,15 @@ const projects = [
 
 const experience = [
   {
-    years: '2024 – 2025',
+    years: '01/2026 – 07/2026',
+    title: 'Flutter Developer',
+    company: 'WeSupport, Inc.',
+    summary:
+      'Develop and maintain Flutter mobile applications, integrating APIs and real-time features while ensuring high-quality user experiences. Collaborate on requirements, testing, bug fixes, documentation, and app deployment.',
+    projects: ['Leggo'],
+  },
+  {
+    years: '01/2024 – 12/2025',
     title: 'Mobile Developer',
     company: 'Web Fuel Agency Ltd.',
     summary:
@@ -109,7 +119,7 @@ const experience = [
     projects: ['Gigasure', 'Racer', 'RegalaTop CL'],
   },
   {
-    years: '2023 – 2024',
+    years: '11/2023 – 06/2024',
     title: 'Senior Software Engineer',
     company: 'Rising Tide Digital, Inc.',
     summary:
@@ -117,15 +127,15 @@ const experience = [
     projects: ['Kaya'],
   },
   {
-    years: '2021 – 2023',
+    years: '08/2021 – 12/2023',
     title: 'Senior Mobile Application Developer',
     company: 'SD Solutions, Inc.',
     summary:
       'Developed and deployed cross-platform Flutter apps. Integrated APIs, payment flows, and push notifications. Published and maintained apps on Google Play and App Store.',
-    projects: ['bXTRA PH', 'MyBasurero'],
+    projects: ['bXTRA', 'MyBasurero'],
   },
   {
-    years: '2014 – 2021',
+    years: '01/2014 – 08/2021',
     title: 'Freelance Programmer',
     company: 'Independent',
     summary:
@@ -133,7 +143,7 @@ const experience = [
     projects: ['Field Service Record', 'Project Monitoring System'],
   },
   {
-    years: '2003 – 2014',
+    years: '10/2003 – 01/2014',
     title: 'Senior Programmer / Team Lead',
     company: 'Z Getcare Systems, Inc.',
     summary:
@@ -207,7 +217,7 @@ export default function App() {
 
               <p className="mt-6 max-w-2xl text-base leading-8 text-slate-300 md:text-lg">
                 I’m Marvin Aquino, a Senior Flutter Developer with deep experience in
-                cross-platform mobile engineering, clean architecture, app store deployment,
+                cross-platform mobile engineering, AI-assisted development, clean architecture, app store deployment,
                 API integrations, and performance optimization for iOS and Android.
               </p>
 
@@ -308,6 +318,7 @@ export default function App() {
                     'Flutter & Dart with scalable architecture',
                     'BLoC + Clean Architecture implementation',
                     'Firebase, payments, maps, analytics',
+                    'AI-assisted development workflows',
                     'App Store & Google Play production releases',
                     'Performance tuning, bug fixing, and UX polish',
                   ].map((item) => (
@@ -350,6 +361,7 @@ export default function App() {
                 {[
                   'Cross-platform Flutter apps for iOS and Android',
                   'API integrations, payments, maps, analytics',
+                  'AI-assisted development for fast, more efficient delivery',
                   'Production support, debugging, and optimization',
                   'App publishing, updates, and long-term maintenance',
                 ].map((item) => (
