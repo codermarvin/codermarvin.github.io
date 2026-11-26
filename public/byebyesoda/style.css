@@ -1897,29 +1897,47 @@ body {
   background: linear-gradient(135deg, rgba(224, 242, 254, 0.55) 0%, rgba(255, 255, 255, 0.9) 52%, rgba(253, 242, 248, 0.65) 100%);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-xl);
-  padding: 48px;
+  padding: 28px 44px 0 32px;
   display: grid;
-  grid-template-columns: 0.95fr 1.05fr;
+  grid-template-columns: 1.12fr 0.88fr;
   align-items: center;
-  gap: 48px;
+  gap: 36px;
   box-shadow: var(--shadow-card);
+  overflow: hidden;
 }
 
 .mascots-visual {
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
+  align-self: end;
+  padding-bottom: 20px;
 }
 
 .mascots-visual::before {
   content: "";
   position: absolute;
-  width: 82%;
-  height: 82%;
+  width: 84%;
+  height: 84%;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(56, 189, 248, 0.2) 0%, rgba(244, 114, 182, 0.14) 55%, rgba(255, 255, 255, 0) 75%);
   filter: blur(18px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.mascots-visual::after {
+  content: "";
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 82%;
+  height: 36px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(15, 23, 42, 0.14) 0%, rgba(15, 23, 42, 0.06) 45%, rgba(15, 23, 42, 0) 75%);
+  filter: blur(12px);
   z-index: 0;
   pointer-events: none;
 }
@@ -1928,21 +1946,17 @@ body {
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 440px;
+  max-width: 560px;
   height: auto;
   display: block;
-  filter: drop-shadow(0 20px 28px rgba(15, 23, 42, 0.14));
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.mascots-visual:hover .mascots-img {
-  transform: translateY(-6px) scale(1.02);
+  filter: drop-shadow(0 6px 14px rgba(15, 23, 42, 0.06));
 }
 
 .mascots-content {
   display: flex;
   flex-direction: column;
   gap: 18px;
+  padding-bottom: 36px;
 }
 
 
@@ -2022,8 +2036,17 @@ body {
     padding: 32px;
   }
 
+  .mascots-visual {
+    align-self: center;
+    padding-bottom: 0;
+  }
+
+  .mascots-content {
+    padding-bottom: 0;
+  }
+
   .mascots-img {
-    max-width: 380px;
+    max-width: 420px;
   }
 }
 
